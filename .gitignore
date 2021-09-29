@@ -1,0 +1,3 @@
+# bin フォルダは要らない
+mysite/mysite/__pychache__
+mysite/spark/__pychache__
