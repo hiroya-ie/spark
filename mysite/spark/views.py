@@ -5,7 +5,5 @@ from django.shortcuts import render
 from . import randomWords
 
 def index(request):
-    #out = randomWords.randomA()
-    #return HttpResponse(out)
-    content = {'message': 'こんにちは！Djangoテンプレート！'}
+    content = {'message': randomWords.randomA()}
     return render(request, 'spark/index.html', content)
