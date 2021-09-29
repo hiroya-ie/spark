@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from . import randomWords
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the spark index.")
+    out = randomWords.randomA()
+    return HttpResponse(out)
