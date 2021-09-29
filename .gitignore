@@ -1,3 +1,4 @@
 # bin フォルダは要らない
 /mysite/mysite/__pycache__
 /mysite/spark/__pycache__
+/mysite/spark/migrations/__pycache__
