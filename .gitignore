@@ -1,3 +1,3 @@
 # bin フォルダは要らない
-/mysite/mysite/__pychache__
-/mysite/spark/__pychache__
+/mysite/mysite/__pycache__
+/mysite/spark/__pycache__
