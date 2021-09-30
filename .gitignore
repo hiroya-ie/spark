@@ -3,4 +3,4 @@
 /mysite/mysite/settings/__pycache__
 /mysite/spark/__pycache__
 /mysite/spark/migrations/__pycache__
-/mysite/mysite/.gitignore.py
+/mysite/.gitignore.py
