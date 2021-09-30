@@ -1,6 +1,5 @@
 # bin フォルダは要らない
-/mysite/mysite/__pycache__
-/mysite/mysite/settings/__pycache__
-/mysite/spark/__pycache__
-/mysite/spark/migrations/__pycache__
-/mysite/.gitignore.py
+/mysite/__pycache__
+/mysite/settings/__pycache__
+/spark/__pycache__
+/spark/migrations/__pycache__
