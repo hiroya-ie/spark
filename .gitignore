@@ -2,3 +2,4 @@
 /mysite/mysite/__pycache__
 /mysite/spark/__pycache__
 /mysite/spark/migrations/__pycache__
+/mysite/local_setting.py
