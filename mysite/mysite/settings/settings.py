@@ -159,3 +159,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+
+#settings.pyの末尾に追加
+try:
+    from local_settings import *
+except ImportError:
+    pass
