@@ -3,3 +3,4 @@
 /mysite/spark/__pycache__
 /mysite/spark/migrations/__pycache__
 /mysite/local_setting.py
+/mysite/.gitignore.py
