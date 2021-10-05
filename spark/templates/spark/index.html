@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spark</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'spark/style.css' %}">
+  <!--<script type="text/javascript" src="{% static 'spark/sample.js' %}"></script>-->
+</head>
+<body>
+
+
+  <div class="a1">
+    <h1>新しいアイディアを探し出せ。</h1>
+  </div>
+  <div class="word">
+    <p>{{ w1 }}</p>
+    <p>{{ w2 }}</p>
+    <p>{{ w3 }}</p>
+  </div>
+  <div class="a1">
+    <button class="btn btn--orange" onclick="location.href='https://spark-enpit2021.herokuapp.com/spark/'">reload</button>
+  </div>
+
+
+
+</body>
+</html>
