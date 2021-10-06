@@ -1,12 +1,12 @@
 #テキストをランダムで表示する
-# import random
+import random
 
 # def randomA():
 #     return random.choice(["リンゴ","ゴリラ","ラッパ","パンツ"])
 
 
 def randomA():
-    return random.choice(word_list)
+    return random.choice(rensou_word_list)
 
 
 
@@ -14,9 +14,9 @@ def randomA():
 import sys, sqlite3
 from collections import namedtuple
 from pprint import pprint
-conn = sqlite3.connect("./spark/wnjpn.dbのコピー")
+conn = sqlite3.connect("./wnjpn.db")
 cur = conn.execute("select * from word where lang = 'jpn' ORDER BY RANDOM() LIMIT 1000;")
-wordlist = [ record[2] for record in cur.fetchall()]
+nwn_words_list = [ record[2] for record in cur.fetchall()]
 
 
 
@@ -37,14 +37,14 @@ data = html.read()
 html = data.decode('utf-8')
 soup = BeautifulSoup(html, 'html.parser')
 links = soup.find_all("a")
-word_list=[]
+rensou_word_list=[]
 
 for a in links:
     text = a.text
-    word_list.append(text)
+    rensou_word_list.append(text)
 
-del word_list[:4]
-del word_list[-55:]
+del rensou_word_list[:4]
+del rensou_word_list[-55:]
 
 
 
