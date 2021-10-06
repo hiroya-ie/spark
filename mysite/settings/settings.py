@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3!j54hjx(l5^dwe_p0a8kzq68nf@o3q--ioba(mh5gd!tz-4!u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['spark-enpit2021.herokuapp.com']
 
@@ -159,9 +159,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
-
-#settings.pyの末尾に追加
-try:
-    from local_settings import *
-except ImportError:
-    pass
