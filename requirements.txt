@@ -3,6 +3,7 @@ asgiref==3.4.1
 attrs==21.2.0
 backcall==0.2.0
 bleach==4.0.0
+bs4==0.0.1
 cffi==1.14.6
 colorama==0.4.4
 cycler==0.10.0
