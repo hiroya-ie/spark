@@ -1,9 +1,5 @@
-var reload =document.getElementById('reload');
-
-reload.addEventListener('click',
-    function()
-    {
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("btn").addEventListener("click", function(){
     window.location.reload();
-    console.log('クリックされました！');
-    }
-);
+    })
+  });

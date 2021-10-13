@@ -4,13 +4,13 @@ li a {
 .a1 {
     /*background-color:  #98d98e;
     height: 120px;*/
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     font-size: 15pt
 }
 
 .word {
-    padding: 5%;
+    padding: 5px;
     text-align: center;
     font-size: 30pt
   }
@@ -64,4 +64,12 @@ a.btn--orange {
 a.btn--orange:hover {
   color: #fff;
   background: #f56500;
+}
+
+.font-main {
+  padding: 2px;
+}
+
+#btn1 {
+  margin-bottom: 4px;
 }
