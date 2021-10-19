@@ -6,12 +6,10 @@ from . import randomWords
 
 def index(request):
     ie_wordlist, trend_rensou_wordlist = randomWords.randomA()
-    result = []
-    #２つのワードを合体してresultリストに追加する
-    for ie_word, trend_rensou_word in zip(ie_wordlist, trend_rensou_wordlist):
-        result.append(ie_word +" × "+ trend_rensou_word)
+    #２つのワードを合体してwordlistリストに追加する
+    wordlist = [""+ie_word +" × "+ trend_rensou_word for ie_word, trend_rensou_word in zip(ie_wordlist, trend_rensou_wordlist)]
 
     content = {
-        'values': result
+        'values': wordlist
         }
     return render(request, 'spark/index.html', content)
