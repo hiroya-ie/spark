@@ -5,10 +5,13 @@ from django.shortcuts import render
 from . import randomWords
 
 def index(request):
-    wordlist=randomWords.randomA()
+    ie_wordlist, trend_rensou_wordlist = randomWords.randomA()
+    result = []
+    #２つのワードを合体してresultリストに追加する
+    for ie_word, trend_rensou_word in zip(ie_wordlist, trend_rensou_wordlist):
+        result.append(ie_word +" × "+ trend_rensou_word)
+
     content = {
-        'w1': wordlist[0],
-        'w2': wordlist[1],
-        'w3': wordlist[2]
+        'values': result
         }
     return render(request, 'spark/index.html', content)
