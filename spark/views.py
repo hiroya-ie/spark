@@ -9,3 +9,13 @@ def index(request):
         'values': wordlist
         }
     return render(request, 'spark/index.html', content)
+
+
+def index(request):
+    ie_wordlist, trend_rensou_wordlist = randomWords.randomA()
+
+    content = {
+        'word_ie': ie_wordlist,
+        'word_rand': trend_rensou_wordlist
+        }
+    return render(request, 'spark/index.html', content)
