@@ -1,19 +1,33 @@
+html {
+  font-size: 75%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 85.5%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  html {
+    font-size: 100%;
+  }
+}
+
 li a {
   color: green;
 }
 .a1 {
-  /*background-color:  #98d98e;
-  height: 120px;*/
   padding: 5px;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   clear: left;
 }
 
 .word {
   padding: 5px;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .word_L {
@@ -22,7 +36,7 @@ li a {
   margin-right: auto;
   text-align: right;
   float: left;
-  font-size: 4rem;
+  font-size: 2.5rem;
 }
 
 .word_x {
@@ -30,7 +44,7 @@ li a {
   margin-left: auto;
   margin-right: auto;
   float: left;
-  font-size: 4rem;
+  font-size: 2.5rem;
 }
 
 .word_R {  
@@ -39,7 +53,7 @@ li a {
   margin-right: auto;
   text-align: left;
   float: left;
-  font-size: 4rem;
+  font-size: 2.5rem;
 }
 
 /*まずはお決まりのボックスサイズ算出をborer-boxに */
@@ -50,11 +64,6 @@ li a {
   box-sizing: inherit;
 }
 
-html {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-size: 62.5%;/*rem算出をしやすくするために*/
-}
 
 .test {
   float: left;
@@ -63,7 +72,7 @@ html {
 .btn,
 a.btn,
 button.btn {
-  font-size: 2.3rem;
+  font-size: 1.7rem;
   font-weight: 700;
   line-height: 1.5;
   position: relative;
