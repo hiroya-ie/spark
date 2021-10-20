@@ -1,20 +1,46 @@
 li a {
-    color: green;
+  color: green;
 }
 .a1 {
-    /*background-color:  #98d98e;
-    height: 120px;*/
-    padding: 5px;
-    text-align: center;
-    font-size: 15pt
+  /*background-color:  #98d98e;
+  height: 120px;*/
+  padding: 5px;
+  text-align: center;
+  font-size: 3rem;
+  clear: left;
 }
 
 .word {
-    padding: 5px;
-    text-align: center;
-    font-size: 30pt
-  }
+  padding: 5px;
+  text-align: center;
+  font-size: 2rem;
+}
 
+.word_L {
+  width: 48%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+  float: left;
+  font-size: 4rem;
+}
+
+.word_x {
+  width: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  float: left;
+  font-size: 4rem;
+}
+
+.word_R {  
+  width: 48%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  float: left;
+  font-size: 4rem;
+}
 
 /*まずはお決まりのボックスサイズ算出をborer-boxに */
 *,
@@ -30,10 +56,14 @@ html {
   font-size: 62.5%;/*rem算出をしやすくするために*/
 }
 
+.test {
+  float: left;
+}
+
 .btn,
 a.btn,
 button.btn {
-  font-size: 1.6rem;
+  font-size: 2.3rem;
   font-weight: 700;
   line-height: 1.5;
   position: relative;

@@ -15,10 +15,34 @@
     </div>
 
     <!--ワードリスト-->
-    <div class="word">
-      {% for value in values %}
-        <p>{{value}}<p>
-      {% endfor %}
+    <div>
+      <div class="word">
+        <div class="word_L">
+          {% for value in word_ie %}
+          <p>{{value}}<p>
+        {% endfor %}
+        </div>
+
+        <div class="word_x">
+          <p> × </p>
+          <p> × </p>
+          <p> × </p>
+          <p> × </p>
+          <p> × </p>
+          <p> × </p>
+          <p> × </p>
+          <p> × </p>
+        </div>
+
+
+
+
+        <div class="word_R">
+          {% for value in word_rand %}
+          <p>{{value}}<p>
+        {% endfor %}
+        </div>
+      </div>
     </div>
 
     <!--リロードボタン-->
