@@ -40,22 +40,17 @@ ie_word_list=["人工知能", "web","スマホ","API","AR", "VR", "自然言語�
 'UTM（統合脅威管理）', 'VoIP', 'VPN', 'VPS', 'WAF', 'WAN', 'WebRTC', 'Webメール', 'Web会議', 'WordPress']
 
 
+#pytrendからリスト作成
+pytrend = TrendReq(hl='ja-jp',tz=540)
+trend_wl = pytrend.trending_searches(pn='japan')[0].to_list()
+
+
 def randomA():
     result = []
-    trend_wl = pytrend()
     rensou_wl = rensou()
     result.extend(trend_wl)
     result.extend(rensou_wl)
     return random.sample(ie_word_list, 8), random.sample(result, 8)
-
-
-
-#pytrendからリスト作成
-def pytrend():
-    pytrend = TrendReq(hl='ja-jp',tz=540)
-    trend_words_list = pytrend.trending_searches(pn='japan')[0].to_list()
-
-    return trend_words_list
 
 
 #連想語サイトからスクレイピングしてリスト作成
