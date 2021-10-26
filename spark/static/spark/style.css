@@ -3,9 +3,10 @@ html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 @media screen and (min-width: 768px) {
   html {
-    font-size: 75%;
+    font-size: 60%;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -17,7 +18,7 @@ html {
 .a1 {
   padding: 5px;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   clear: left;
 }
 
