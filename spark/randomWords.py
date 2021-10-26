@@ -47,24 +47,24 @@ trend_wl = pytrend.trending_searches(pn='japan')[0].to_list()
 
 def randomA():
     result = []
-    rensou_wl = rensou()
+    rensou_wl = wlist
     result.extend(trend_wl)
     result.extend(rensou_wl)
     return random.sample(ie_word_list, 8), random.sample(result, 8)
 
 
 #連想語サイトからスクレイピングしてリスト作成
-def rensou():
-    wlist=[]
-    #for i in range(5):
-    html = urlopen("https://renso-ruigo.com")
-    data = html.read()
-    html = data.decode('utf-8')
-    soup = BeautifulSoup(html, 'html.parser')
-    links = soup.find_all("a")
-    rensou_words_list=[a.text for a in links]
-    del rensou_words_list[:4]
-    del rensou_words_list[-55:]
-    wlist.extend(rensou_words_list)
+#def rensou():
+wlist=[]
+#for i in range(5):
+html = urlopen("https://renso-ruigo.com")
+data = html.read()
+html = data.decode('utf-8')
+soup = BeautifulSoup(html, 'html.parser')
+links = soup.find_all("a")
+rensou_words_list=[a.text for a in links]
+del rensou_words_list[:4]
+del rensou_words_list[-55:]
+wlist.extend(rensou_words_list)
 
-    return wlist
+    #return wlist
