@@ -50,7 +50,7 @@ def randomA():
     rensou_wl = wlist
     result.extend(trend_wl)
     result.extend(rensou_wl)
-    return random.sample(ie_word_list, 8), random.sample(result, 8)
+    return random.sample(ie_word_list, 9), random.sample(result, 9)
 
 
 #連想語サイトからスクレイピングしてリスト作成
