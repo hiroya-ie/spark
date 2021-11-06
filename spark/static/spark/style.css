@@ -22,36 +22,93 @@ html {
   clear: left;
 }
 
+.btn-reload {
+  margin: 100px;
+  text-align: center;
+  font-size: 2rem;
+  clear: left;
+  
+}
 .word {
   padding: 5px;
   text-align: center;
   font-size: 1rem;
+  list-style-type: none;
+  margin: 0;
 }
 
-.word_L {
-  width: 48%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: right;
-  float: left;
-  font-size: 2.5rem;
-}
+@media screen and (min-width: 481px) {
+  .word {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .word_set {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    float: left;
+    text-align: center;
+    position:relative;
 
-.word_x {
-  width: 4%;
-  margin-left: auto;
-  margin-right: auto;
-  float: left;
-  font-size: 2.5rem;
-}
+    
+  }
+  .word_L {
+    width: 45%;
+    box-sizing: border-box;
+    float: left;
+    text-align: right;
+    font-size: 2.9rem;
+    padding-top: 40px;
+    /* width: 10%;
+    bottom:  20px;
+    width: 100%; */
+    
+    
+    
+  }
+  .word_x {
+    width: 10%;
+    box-sizing: border-box;
+    
+    float: left;
+    font-size: 2.6rem;
+    padding: 10px;
+    padding-top: 45px;
+    
 
-.word_R {  
-  width: 48%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-  float: left;
-  font-size: 2.5rem;
+    /* bottom:  20px;
+    width: 100%; */
+    
+  }
+  .word_R {
+    width: 45%;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    float: left;
+    font-size: 2.1rem;
+    padding-left: 10px;
+    
+
+  }
+}
+@media screen and (min-width: 840px) {
+  .word_set {
+    width: 33%;
+  }
+  /* .word_L {
+    width: 45%;
+  }
+  .word_x {
+    width: 10%;
+  }
+  .word_R {
+    width: 45%;
+  } */
+  
 }
 
 /*まずはお決まりのボックスサイズ算出をborer-boxに */

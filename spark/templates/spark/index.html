@@ -15,38 +15,55 @@
     </div>
 
     <!--ワードリスト-->
-    <div>
       <div class="word">
-        <div class="word_L">
-          {% for value in word_ie %}
-          <p>{{value}}<p>
-        {% endfor %}
+        <div class="word_set">
+          <div class="word_L">
+            <p>{{word_ie1}}</p>
+          </div>
+          <div class="word_x">
+            <p> × </p>
+          </div>
+          <div class="word_R">
+            <p>{{word_rand1}}</p>
+            <p>{{word_rand2}}</p>
+            <p>{{word_rand3}}</p>
+            </div>
+          </div>
+
+
+          <div class="word_set">
+            <div class="word_L">
+              <p>{{word_ie2}}</p>
+            </div>
+            <div class="word_x">
+              <p> × </p>
+            </div>
+            <div class="word_R">
+              <p>{{word_rand4}}</p>
+              <p>{{word_rand5}}</p>
+              <p>{{word_rand6}}</p>
+              </div>
+          </div>
+
+
+            <div class="word_set">
+              <div class="word_L">
+                <p>{{word_ie3}}</p>
+              </div>
+              <div class="word_x">
+                <p> × </p>
+              </div>
+              <div class="word_R">
+                <p>{{word_rand7}}</p>
+                <p>{{word_rand8}}</p>
+                <p>{{word_rand9}}</p>
+              </div>
+            </div>
         </div>
-
-        <div class="word_x">
-          <p> × </p>
-          <p> × </p>
-          <p> × </p>
-          <p> × </p>
-          <p> × </p>
-          <p> × </p>
-          <p> × </p>
-          <p> × </p>
-        </div>
-
-
-
-
-        <div class="word_R">
-          {% for value in word_rand %}
-          <p>{{value}}<p>
-        {% endfor %}
-        </div>
-      </div>
-    </div>
+      
 
     <!--リロードボタン-->
-    <div class="a1">
+    <div class="btn-reload">
       <button class="btn btn--orange" onclick="window.location.reload();">もういっかい！</button>
     </div>
 
