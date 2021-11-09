@@ -163,3 +163,7 @@ a.btn--orange:hover {
 #btn1 {
   margin-bottom: 4px;
 }
+
+.form {
+  text-align: center;
+}
