@@ -5,13 +5,17 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
 
-ie_word_list=["人工知能", "web","スマホ","API","AR", "VR", "自然言語処理", "画像処理", "機械学習", 
+ie_word_list_nomal=["人工知能", "web","スマホ","API","AR", "VR", "自然言語処理", "画像処理", "機械学習", 
 "データベース", "GPS", "カメラ", "指紋認証", "顔認証", "サーモグラフィ", "リモート", "ロボット", "3D",
- "音声", "SNS", "メール", "自動化", "オンライン", "電子化","分析","python","C言語","java","javascript",
- "HTML","css","C++","go",'アイデンティティ管理', 'アクセス解析', 'アドイン', 'アドオン', 'アンケートシステム', '安否確認システム',
+ "音声", "SNS", "メール", "自動化", "オンライン", "電子化","分析","掲示板", "Django","tkinter", ]
+ #"python","C言語","java","javascript","HTML","css","C++","go"
+
+
+ 
+ie_word_list_hard=['アイデンティティ管理', 'アクセス解析', 'アドイン', 'アドオン', 'アンケートシステム', '安否確認システム',
 '暗号化', 'インシデント', 'インジェクション攻撃', 'インフラ', 'インベントリ', 'イーサネット', 'ウィルス対策',
 'ウォームスタンバイ', '受付システム', 'エクサバイト', 'エンタープライズサーチ', 'オブジェクト指向', 'オンデマンド',
-'オンラインストレージ', 'オープンシステム', 'オープンソース', 'カスタマー・リレーションシップ・マネジメント', 
+'オンラインストレージ', 'オープンシステム', 'オープンソース', 
 'カラーバーコード', '会計ソフト', '可用性', '開発ツール', 'キッティング', 'ギガバイト', '勤怠管理システム', 
 '給与システム', 'クエリ', 'クライアント仮想化', 'グループウェア', '原価管理', '形態素解析', '検疫ネットワーク', 
 'コロケーション', 'コンテンツマネジメントシステム', 'コンフィグレーション', 'コールセンター', 'サプライチェーンマネジメント',
@@ -30,8 +34,8 @@ ie_word_list=["人工知能", "web","スマホ","API","AR", "VR", "自然言語�
 'モバイルコンピュータ', 'リカバリ', 'リストア', 'リッチクライアント', 'リモートアクセス', 'ルータ',
 'レガシーシステム', 'ログ', 'ロードバランサ', 'ワンタイムパスワード', 'ワークフロー', 'ABI', 'ACL', 'Ajax',
 'android', 'Apache', 'ASP', 'AV', 'BC', 'BPM', 'BREW', 'BYOD', 'CAD', 'CAE', 'CAM', 'CMS', 'DaaS',
-'DDoS攻撃', 'DHCP', 'DLP', 'DMI', 'DMP', 'DMZ', 'DNS（DigitalNervousSystem）', 
-'DNS（DomainNameSystem）', 'DoS攻撃', 'Dropbox', 'DWH', 'EAI', 'ECP', 'EDA', 'EDI', 'EIP',
+'DDoS攻撃', 'DHCP', 'DLP', 'DMI', 'DMP', 'DMZ', 
+'DNS', 'DoS攻撃', 'Dropbox', 'DWH', 'EAI', 'ECP', 'EDA', 'EDI', 'EIP',
 'EOS', 'ESB', 'ETL', 'eラーニング', 'FAQシステム', 'Flash', 'FTP', 'GUI', 'HaaS', 'HTML', 'HTTPS', 
 'IaaS', 'ICタグ', 'iOS', 'iPhone', 'IPP', 'IPコミュニケーション', 'IP電話', 'ITIL', 'IT資産管理', 
 'Java', 'JSP', 'KVMスイッチ', 'L2スイッチ', 'LAN', 'Linux', 'MDM', 'MySQL', 'NAS', 'NGN', 'OCR',
@@ -50,7 +54,11 @@ def randomA():
     rensou_wl = wlist
     result.extend(trend_wl)
     result.extend(rensou_wl)
-    return random.sample(ie_word_list, 9), random.sample(result, 9)
+    #易しい単語6つ. 難しい単語3つからなるリスト作成
+    tmp=random.sample(ie_word_list_hard, 3)
+    ie_word_list=random.sample(ie_word_list_nomal, 6)
+    ie_word_list.extend(tmp)
+    return random.sample(ie_word_list, 9), random.sample(result, 27)
 
 
 #連想語サイトからスクレイピングしてリスト作成
