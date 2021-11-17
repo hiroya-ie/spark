@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
-import django_heroku
-
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +27,7 @@ SECRET_KEY = 'django-insecure-3!j54hjx(l5^dwe_p0a8kzq68nf@o3q--ioba(mh5gd!tz-4!u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['spark-enpit2021.herokuapp.com']
+ALLOWED_HOSTS = ['spark-e195738.st.ie.u-ryukyu.ac.jp']
 
 
 # Application definition
@@ -130,8 +128,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -148,8 +144,6 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
-
-import os
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
