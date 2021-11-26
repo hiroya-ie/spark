@@ -4,3 +4,5 @@
 /spark/__pycache__
 /spark/migrations/__pycache__
 /mysite/settings/local_settings.py
+wnjpn.db
+mysite.sock
