@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById("btn").addEventListener("click", function(){
-    window.location.reload();
-    })
-  });
+// document.addEventListener('DOMContentLoaded', function() {
+//     document.getElementById("btn").addEventListener("click", function(){
+//     window.location.reload();
+//     })
+//   });
+
