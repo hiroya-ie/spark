@@ -15,64 +15,156 @@
     </div>
 
     <!--ワードリスト-->
-      <div class="word">
+    <div class="word">
+      <div class="word_set">
+        <div class="word_Left">
+          <p>　</p>
+          <p id="wi1">{{word_ie1}}</p>
+          <p>　</p>
+        </div>
+        <div class="word_x">
+          <p>　</p>
+          <p> × </p>
+          <p>　</p>
+        </div>
+        <div class="word_Right">
+          <p id="wr1">{{word_rand1}}</p>
+          <p id="wr2">{{word_rand2}}</p>
+          <p id="wr3">{{word_rand3}}</p>
+          </div>
+        </div>
+
+
         <div class="word_set">
-          <div class="word_L">
-            <p>{{word_ie1}}</p>
+          <div class="word_Left">
+            <p>　</p>
+            <p id="wi2">{{word_ie2}}</p>
+            <p>　</p>
           </div>
           <div class="word_x">
+            <p>　</p>
             <p> × </p>
+            <p>　</p>
           </div>
-          <div class="word_R">
-            <p>{{word_rand1}}</p>
-            <p>{{word_rand2}}</p>
-            <p>{{word_rand3}}</p>
+          <div class="word_Right">
+            <p id="wr4">{{word_rand4}}</p>
+            <p id="wr5">{{word_rand5}}</p>
+            <p id="wr6">{{word_rand6}}</p>
             </div>
-          </div>
+        </div>
 
 
           <div class="word_set">
-            <div class="word_L">
-              <p>{{word_ie2}}</p>
+            <div class="word_Left">
+              <p>　</p>
+              <p id="wi3">{{word_ie3}}</p>
+              <p>　</p>
             </div>
             <div class="word_x">
+              <p>　</p>
               <p> × </p>
+              <p>　</p>
             </div>
-            <div class="word_R">
-              <p>{{word_rand4}}</p>
-              <p>{{word_rand5}}</p>
-              <p>{{word_rand6}}</p>
-              </div>
+            <div class="word_Right">
+              <p id="wr7">{{word_rand7}}</p>
+              <p id="wr8">{{word_rand8}}</p>
+              <p id="wr9">{{word_rand9}}</p>
+            </div>
           </div>
+      </div>
 
-
-            <div class="word_set">
-              <div class="word_L">
-                <p>{{word_ie3}}</p>
-              </div>
-              <div class="word_x">
-                <p> × </p>
-              </div>
-              <div class="word_R">
-                <p>{{word_rand7}}</p>
-                <p>{{word_rand8}}</p>
-                <p>{{word_rand9}}</p>
-              </div>
-            </div>
-        </div>
       
 
-    <!--リロードボタン-->
-    <div class="btn-reload">
-      <button class="btn btn--orange" onclick="window.location.reload();">もういっかい！</button>
-    </div>
+      <!--リロード無しで要素更新ボタン-->
+      <div class="bt">
+        <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" class="bt">
+            {% csrf_token %}
+            <button type="submit" class="btn btn--orange">もういっかい！</button>
+        </form>
+
+      </div>
+
+      
+      
+
+    
 
     <!--フォーム-->
     <div class="form">
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKsVhKNyarTrIrXJDwqlTF5dXa3HdOQ1ckzcK6v2sV96-TZg/viewform?embedded=true" width="640" height="645" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
     </div>
 
-    <!--JavaScript-->
-    <script type="text/javascript" src="{% static 'spark/sample.js' %}"></script>
+
+
+
+
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+      //ajaxのおまじない
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+
+        $('#ajax-number').on('submit', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                'url': '{% url "blog:ajax_number" %}',
+                'type': 'POST',
+                'data': {
+                },
+                'dataType': 'json'
+            })
+            .done(function(response){
+                $('#wi1').text(response.word_ie1);
+                $('#wi2').text(response.word_ie2);
+                $('#wi3').text(response.word_ie3);
+                $('#wr1').text(response.word_rand1);
+                $('#wr2').text(response.word_rand2);
+                $('#wr3').text(response.word_rand3);
+                $('#wr4').text(response.word_rand4);
+                $('#wr5').text(response.word_rand5);
+                $('#wr6').text(response.word_rand6);
+                $('#wr7').text(response.word_rand7);
+                $('#wr8').text(response.word_rand8);
+                $('#wr9').text(response.word_rand9);
+                
+            });
+        });
+
+
+    </script>
   </body>
 </html>
