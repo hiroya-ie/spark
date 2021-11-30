@@ -77,7 +77,7 @@
 
       <!--リロード無しで要素更新ボタン-->
       <div class="bt">
-        <form id="ajax-number" action="{% url 'spark:ajax_number' %}" method="POST" class="bt">
+        <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" class="bt">
             {% csrf_token %}
             <button type="submit" class="btn btn--orange">もういっかい！</button>
         </form>
@@ -141,7 +141,7 @@
             e.preventDefault();
 
             $.ajax({
-                'url': '{% url "spark:ajax_number" %}',
+                'url': '{% url "blog:ajax_number" %}',
                 'type': 'POST',
                 'data': {
                 },
