@@ -3,16 +3,8 @@ from . import randomWords
 from django.http import JsonResponse
 
 
-def index(request):
-    wordlist=randomWords.randomA()
-    
-    content = {
-        'values': wordlist
-        }
-    return render(request, 'spark/index.html', content)
 
-
-def index(request):
+def view1(request):
     ie_wordlist, trend_rensou_wordlist = randomWords.randomA()
 
     content = {
@@ -30,7 +22,7 @@ def index(request):
         'word_rand9': trend_rensou_wordlist[8],
 
         }
-    return render(request, 'spark/index.html', content)
+    return render(request, 'spark/view1.html', content)
 
 def ajax_number(request):
     ie_wordlist, trend_rensou_wordlist = randomWords.randomA()

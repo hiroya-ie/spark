@@ -21,69 +21,57 @@
     </div>
 
     <!--ワードリスト-->
-      <div class="word">
-        <div class="word_set">
-          <div class="word_L">
-            <p>{{word_ie1}}</p>
-          </div>
-          <div class="word_x">
-            <p> × </p>
-          </div>
-          <div class="word_R">
-            <p>{{word_rand1}}</p>
-            <p>{{word_rand2}}</p>
-            <p>{{word_rand3}}</p>
-            </div>
-          </div>
-
-
-          <div class="word_set">
-            <div class="word_L">
-              <p>{{word_ie2}}</p>
-            </div>
-            <div class="word_x">
-              <p> × </p>
-            </div>
-            <div class="word_R">
-              <p>{{word_rand4}}</p>
-              <p>{{word_rand5}}</p>
-              <p>{{word_rand6}}</p>
-              </div>
-          </div>
-
-
-            <div class="word_set">
-              <div class="word_L">
-                <p>{{word_ie3}}</p>
-              </div>
-              <div class="word_x">
-                <p> × </p>
-              </div>
-              <div class="word_R">
-                <p>{{word_rand7}}</p>
-                <p>{{word_rand8}}</p>
-                <p>{{word_rand9}}</p>
-              </div>
-            </div>
+    <div class="word">
+      <div class="word_box1">
+        <div class="word_Left">
+          <p>　</p>
+          <p id="wi1">{{word_ie1}}</p>
+          <p>　</p>
         </div>
+        <div class="word_x">
+          <p>　</p>
+          <p> × </p>
+          <p>　</p>
+        </div>
+        <div class="word_Right">
+            {% csrf_token %}          
+            <button class="btn--gray" type="submit" id="wr1">{{ word_rand1 }}</button>
+            <button class="btn--gray" type="submit" id="wr2">{{ word_rand2 }}</button>
+            <button class="btn--gray" type="submit" id="wr3">{{ word_rand3 }}</button>
+          
+        </div>
+      </div>
+
       
 
+      <!--リロード無しで要素更新ボタン-->
+      <div class="bt">
+        <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" class="bt">
+            {% csrf_token %}
+            <button type="submit" class="btn btn--orange">もういっかい！</button>
+        </form>
 
-    <!--リロード無しで要素更新ボタン-->
-    <div class="bt">
-      <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" class="bt">
-          {% csrf_token %}
-          <button type="submit" class="btn btn--orange">もういっかい！</button>
-      </form>
+      </div>
 
+      <!--単語保存場所-->
+      <h2>保存</h2>
+      <div class="save-tango">
+      </div>
     </div>
+    
 
     <!--フォーム-->
     <div class="form">
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKsVhKNyarTrIrXJDwqlTF5dXa3HdOQ1ckzcK6v2sV96-TZg/viewform?embedded=true" width="640" height="645" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
     </div>
 
-    <!--JavaScript-->
+
+
+
+
+
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
       //単語を保存
