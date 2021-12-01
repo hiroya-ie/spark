@@ -68,7 +68,11 @@
         </div>
       
 
-
+    
+    <!--リロードボタン-->
+    <div class="btn-reload">
+      <button class="btn btn--orange" onclick="window.location.reload();">もういっかい！</button>
+    </div>
     <!--リロード無しで要素更新ボタン-->
     <div class="bt">
       <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" class="bt">
@@ -84,6 +88,7 @@
     </div>
 
     <!--JavaScript-->
+    <script type="text/javascript" src="{% static 'spark/sample.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
       //単語を保存
