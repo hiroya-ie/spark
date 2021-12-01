@@ -5,6 +5,7 @@ enpit2021 webapp班-b
 琉球大学2021年度後期 「エンジニアリングデザイン演習」にて作成したWebアプリ「Spark」です。  
 
 URL  
+http://spark-e195738.st.ie.u-ryukyu.ac.jp/spark/  
 https://spark-enpit2021.herokuapp.com/spark/
 
 # members
