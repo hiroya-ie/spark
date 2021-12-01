@@ -4,14 +4,14 @@ html {
   box-sizing: border-box;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 368px) {
   html {
-    font-size: 60%;
+    font-size: 50%;
   }
 }
 @media screen and (min-width: 1024px) {
   html {
-    font-size: 100%;
+    font-size: 90%;
   }
 }
 
@@ -29,72 +29,78 @@ html {
   clear: left;
   
 }
-.word {
-  padding: 5px;
-  text-align: center;
-  font-size: 1rem;
-  list-style-type: none;
-  margin: 0;
-}
+
 
 @media screen and (min-width: 481px) {
   .word {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .word_set {
+    font-weight: bold;
+    font-size: 2rem;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
     box-sizing: border-box;
-    padding: 10px;
-    float: left;
-    text-align: center;
-    position:relative;
+    display: flex; 
+    flex-wrap: wrap;  
+   
 
-    
   }
-  .word_L {
-    width: 45%;
-    box-sizing: border-box;
+
+  .word_box1 {
     float: left;
+    width: 100%;
+
+  }
+  .word_box2 {
+    float: left;
+    width: 50%;
+
+  }
+  .word_box3 {
+    float: left;
+    width: 33%;
+
+
+  }
+  .word_Left {
     text-align: right;
-    font-size: 2.9rem;
-    padding-top: 40px;
-    /* width: 10%;
-    bottom:  20px;
-    width: 100%; */
-    
+    float: left;
+    width: 45%;
+    font-size: 2rem;
     
     
   }
   .word_x {
-    width: 10%;
-    box-sizing: border-box;
-    
+    text-align: center;
     float: left;
-    font-size: 2.6rem;
-    padding: 10px;
-    padding-top: 45px;
-    
-
-    /* bottom:  20px;
-    width: 100%; */
-    
+    width: 10%;
   }
-  .word_R {
-    width: 45%;
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
+
+  .word_Right {
     text-align: left;
     float: left;
-    font-size: 2.1rem;
-    padding-left: 10px;
-    
-
+    width: 45%;
   }
+
 }
+.bt {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+h2 {
+  width: 100%;
+  float: left;
+  margin: 0;
+  margin-top: 60px;
+}
+
+.save-tango {
+  float: left;
+}
+
+
+
 @media screen and (min-width: 840px) {
   .word_set {
     width: 33%;
@@ -123,6 +129,7 @@ html {
 .btn,
 a.btn,
 button.btn {
+  
   font-size: 1.7rem;
   font-weight: 700;
   line-height: 1.5;
@@ -142,8 +149,35 @@ button.btn {
   letter-spacing: 0.1em;
   color: #212529;
   border-radius: 0.5rem;
+  
+  
 }
 
+
+.btn--gray,
+a.btn--gray {
+  display: flex; 
+  flex-wrap: wrap;  
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+  margin: 2%;
+}
 
 .btn--orange,
 a.btn--orange {

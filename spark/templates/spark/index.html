@@ -21,54 +21,66 @@
     </div>
 
     <!--ワードリスト-->
-      <div class="word">
+    <div class="word">
+      <div class="word_set">
+        <div class="word_Left">
+          <p>　</p>
+          <p id="wi1">{{word_ie1}}</p>
+          <p>　</p>
+        </div>
+        <div class="word_x">
+          <p>　</p>
+          <p> × </p>
+          <p>　</p>
+        </div>
+        <div class="word_Right">
+          <p id="wr1">{{word_rand1}}</p>
+          <p id="wr2">{{word_rand2}}</p>
+          <p id="wr3">{{word_rand3}}</p>
+          </div>
+        </div>
+
+
         <div class="word_set">
-          <div class="word_L">
-            <p>{{word_ie1}}</p>
+          <div class="word_Left">
+            <p>　</p>
+            <p id="wi2">{{word_ie2}}</p>
+            <p>　</p>
           </div>
           <div class="word_x">
+            <p>　</p>
             <p> × </p>
+            <p>　</p>
           </div>
-          <div class="word_R">
-            <p>{{word_rand1}}</p>
-            <p>{{word_rand2}}</p>
-            <p>{{word_rand3}}</p>
+          <div class="word_Right">
+            <p id="wr4">{{word_rand4}}</p>
+            <p id="wr5">{{word_rand5}}</p>
+            <p id="wr6">{{word_rand6}}</p>
             </div>
-          </div>
+        </div>
 
 
           <div class="word_set">
-            <div class="word_L">
-              <p>{{word_ie2}}</p>
+            <div class="word_Left">
+              <p>　</p>
+              <p id="wi3">{{word_ie3}}</p>
+              <p>　</p>
             </div>
             <div class="word_x">
+              <p>　</p>
               <p> × </p>
+              <p>　</p>
             </div>
-            <div class="word_R">
-              <p>{{word_rand4}}</p>
-              <p>{{word_rand5}}</p>
-              <p>{{word_rand6}}</p>
-              </div>
+            <div class="word_Right">
+              <p id="wr7">{{word_rand7}}</p>
+              <p id="wr8">{{word_rand8}}</p>
+              <p id="wr9">{{word_rand9}}</p>
+            </div>
           </div>
+      </div>
 
-
-            <div class="word_set">
-              <div class="word_L">
-                <p>{{word_ie3}}</p>
-              </div>
-              <div class="word_x">
-                <p> × </p>
-              </div>
-              <div class="word_R">
-                <p>{{word_rand7}}</p>
-                <p>{{word_rand8}}</p>
-                <p>{{word_rand9}}</p>
-              </div>
-            </div>
-        </div>
       
 
-    
     <!--リロードボタン-->
     <div class="btn-reload">
       <button class="btn btn--orange" onclick="window.location.reload();">もういっかい！</button>
@@ -91,29 +103,6 @@
     <script type="text/javascript" src="{% static 'spark/sample.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-      //単語を保存
-      function butotnClick(){
-          var wi1 = $("#wi1").text(); 
-          var value1 = $("#wr1").text(); 
-          $('.save-tango').prepend('<p>' + wi1 + " × "+ value1 + '</p>');
-      }
-      function butotnClick2(){       
-          var wi1 = $("#wi1").text(); 
-          var value2 = $("#wr2").text();
-          $('.save-tango').prepend('<p>' + wi1 + " × "+ value2 + '</p>');
-      }
-      function butotnClick3(){    
-          var wi1 = $("#wi1").text(); 
-          var value3 = $("#wr3").text();      
-          $('.save-tango').prepend('<p>' + wi1 + " × "+ value3 + '</p>');
-      }
-      let button1 = document.getElementById('wr1');
-      button1.addEventListener('click', butotnClick);
-      let button2 = document.getElementById('wr2');
-      button2.addEventListener('click', butotnClick2);
-      let button3 = document.getElementById('wr3');
-      button3.addEventListener('click', butotnClick3);
-
 
 
       //ajaxのおまじない

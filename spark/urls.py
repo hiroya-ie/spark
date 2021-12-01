@@ -7,6 +7,7 @@ from . import view3
 from . import view4
 from . import view5
 
+app_name = 'blog'
 urlpatterns = [
     path('', views.index, name='index'),
     path('view1', view1.view1, name = 'view1'),
