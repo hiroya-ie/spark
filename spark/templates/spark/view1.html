@@ -25,7 +25,7 @@
       <div class="word_box1">
         <div class="word_Left">
           <p>　</p>
-          <p id="wi1">{{word_ie1}}</p>
+          <button class="btn--gray--r" id="wi1" onclick="changeId(id);" style="border:outset 7px;">{{ word_ie1 }}</button>
           <p>　</p>
         </div>
         <div class="word_x">
@@ -44,7 +44,7 @@
 
       
 
-      <!--リロード無しで要素更新ボタン-->
+      <!--リロード無しで単語更新ボタン-->
       <div class="bt">
         <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" class="bt">
             {% csrf_token %}
@@ -74,21 +74,39 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-      //単語を保存
+      
+      /*=================================================
+      左の単語を固定する流れ
+      ===================================================*/
+      //「リロード無し更新」はhtml内の要素に対しidを指定して更新している。
+      //そして、左の単語はボタンクリックすることでidが代わる（wi1→wi1_fixed もしくは wi1_fixed→wi1）、
+      //よってidが変わるとリロード無し更新の対象にならないので単語が変わらない(固定されている)
+      
+
+
+      /*=================================================
+      単語の保存処理
+      ===================================================*/
+      //左の単語のidは"wi1"か"wi1_fixed"どっちかなので,両方同時に使用することで、
+      //idが変わってもid指定で書き込むことができる！
+      //しかし存在しないidを指定しちゃってるため、エラーは出てないが不具合の原因になる可能性あり！
       function butotnClick(){
           var wi1 = $("#wi1").text(); 
+          var wi1_fixed = $("#wi1_fixed").text(); 
           var value1 = $("#wr1").text(); 
-          $('.save-tango').prepend('<p>' + wi1 + " × "+ value1 + '</p>');
+          $('.save-tango').prepend('<p>' + wi1 + wi1_fixed +  " × "+ value1 + '</p>');
       }
       function butotnClick2(){       
           var wi1 = $("#wi1").text(); 
+          var wi1_fixed = $("#wi1_fixed").text(); 
           var value2 = $("#wr2").text();
-          $('.save-tango').prepend('<p>' + wi1 + " × "+ value2 + '</p>');
+          $('.save-tango').prepend('<p>' + wi1 + wi1_fixed + " × "+ value2 + '</p>');
       }
       function butotnClick3(){    
           var wi1 = $("#wi1").text(); 
+          var wi1_fixed = $("#wi1_fixed").text(); 
           var value3 = $("#wr3").text();      
-          $('.save-tango').prepend('<p>' + wi1 + " × "+ value3 + '</p>');
+          $('.save-tango').prepend('<p>' + wi1 + wi1_fixed + " × "+ value3 + '</p>');
       }
       let button1 = document.getElementById('wr1');
       button1.addEventListener('click', butotnClick);
@@ -97,9 +115,28 @@
       let button3 = document.getElementById('wr3');
       button3.addEventListener('click', butotnClick3);
 
+      
+      //左を固定する関数
+      function changeId(idname){
+      obj = document.getElementById(idname);
+      if (obj.id=="wi1") {
+        obj.id = "wi1_fixed";
+        obj.style.border='inset 7px';//ボタンが押しっぱであることを表現
+        obj.style.boxShadow = "none";//固定している状態の時は影を消す
+      }
+      else  {
+        obj.id = "wi1";
+        obj.style.border='outset 7px';//ボタン押しっぱ表現を元に戻す
+        obj.style.boxShadow= "0px 3px #000080";// 固定を解除すると影が出現
+      }
+      }
 
 
-      //ajaxのおまじない
+      
+
+
+
+      //ajaxのおまじない(今はあんまり考える必要なし！)
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -130,10 +167,11 @@
                 }
             }
         });
+        
 
-
+        //ajaxの各種設定（考える必要あり！）
         $('#ajax-number').on('submit', function(e) {
-            e.preventDefault();
+            e.preventDefault(); //デフォだとリロードする設定になっているため、これで回避。
 
             $.ajax({
                 'url': '{% url "blog:ajax_number" %}',
@@ -142,6 +180,10 @@
                 },
                 'dataType': 'json'
             })
+
+            //通信が成功した際の処理
+            //views.pyにある関数ajax-numberから戻り値をゲットし、
+            //代入する場所をidで指定してtext()関数で書き換えている。
             .done(function(response){
                 $('#wi1').text(response.word_ie1);
                 $('#wr1').text(response.word_rand1);

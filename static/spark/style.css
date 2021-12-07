@@ -30,6 +30,9 @@ html {
   
 }
 
+div { 
+  /* border: solid 8px red; */
+}
 
 @media screen and (min-width: 481px) {
   .word {
@@ -67,12 +70,12 @@ html {
     width: 45%;
     font-size: 2rem;
     
-    
   }
   .word_x {
     text-align: center;
     float: left;
     width: 10%;
+    font-size: 2.2rem;
   }
 
   .word_Right {
@@ -150,7 +153,6 @@ button.btn {
   color: #212529;
   border-radius: 0.5rem;
   
-  
 }
 
 
@@ -176,7 +178,43 @@ a.btn--gray {
   letter-spacing: 0.1em;
   color: #212529;
   border-radius: 0.5rem;
-  margin: 2%;
+  margin: 3%;
+  box-shadow: 0px 3px #000080;
+  
+}
+
+.btn--gray--r,
+a.btn--gray--r {
+  /* display: flex; 
+  flex-wrap: wrap;   */
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  /* position: relative; */
+  padding: 1rem 2rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+  margin-right: 2%;
+  box-shadow: 0px 3px #000080;
+}
+
+
+.btn--gray--r:active, 
+.btn--gray:active {
+  box-shadow: none;
+  position: relative;
+  top: 5px;
 }
 
 .btn--orange,
@@ -199,9 +237,5 @@ a.btn--orange:hover {
 }
 
 .form {
-  text-align: center;
-}
-
-.link {
   text-align: center;
 }
