@@ -3,6 +3,7 @@ import random
 from pytrends.request import TrendReq
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+#import wikipedia
 
 
 ie_word_list=["人工知能", "web","スマホ","API","AR", "VR", "自然言語処理", "画像処理", "機械学習", 
