@@ -70,8 +70,11 @@ def randomA():
     rensou_wl = wlist
     result.extend(trend_wl)
     # result.extend(rensou_wl)
+    ie_list=random.sample(ie_word_list, 9)
+    word=ie_list[0]
     result.extend(ie_original_word)
-    return random.sample(ie_word_list, 9), random.sample(result, 9)
+    wiki= wikip(word=word)
+    return ie_list, random.sample(result, 9), wiki
     # word=random.sample(ie_word_list, 1)
     # wiki= wikip(word=word)
     # return word, wiki, random.sample(result, 9)
