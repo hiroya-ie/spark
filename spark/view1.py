@@ -27,7 +27,7 @@ def view1(request):
 
 def ajax_number(request):
     ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomA()
-
+    wiki=randomWords.wikip(ie_wordlist[0])
     content = {
         'word_ie1': ie_wordlist[0],
         'word_ie2': ie_wordlist[1],
