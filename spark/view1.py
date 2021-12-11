@@ -41,6 +41,6 @@ def ajax_number(request):
         'word_rand7': trend_rensou_wordlist[6],
         'word_rand8': trend_rensou_wordlist[7],
         'word_rand9': trend_rensou_wordlist[8],
-        'wiki':wiki,
+        'wiki': wiki,
         }
     return JsonResponse(content)
