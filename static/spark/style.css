@@ -32,6 +32,7 @@ html {
 
 div { 
   /* border: solid 8px red; */
+  
 }
 
 @media screen and (min-width: 481px) {
@@ -69,8 +70,44 @@ div {
     float: left;
     width: 45%;
     font-size: 2rem;
-    
+    position: relative;
   }
+  .fukidashi_L {
+    display: none;
+    width: 60%;
+    position: absolute;
+    top: 0;
+    right: 190px;
+    padding: 16px;
+    border-radius: 5px;
+    background: #33cc99;
+    color: #000;
+    font-weight: normal;
+    font-size: 1.2rem;
+    text-align: left;
+
+
+  }
+  .fukidashi_L:after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0;
+    bottom: -19px;
+    margin-right: 10px;
+    border: solid transparent;
+    border-color: rgba(51, 204, 153, 0);
+    border-top-color: #33cc99;
+    border-width: 10px;
+    pointer-events: none;
+    content: " ";
+  }
+  #wi1:hover + .fukidashi_L {
+    display: block;
+  }
+
+
+
   .word_x {
     text-align: center;
     float: left;

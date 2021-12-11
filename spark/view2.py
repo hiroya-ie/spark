@@ -5,12 +5,12 @@ from django.http import JsonResponse
 
 
 def view2(request):
-    ie_wordlist, trend_rensou_wordlist = randomWords.randomA()
+    ie_wordlist, wiki, trend_rensou_wordlist = randomWords.randomA()
 
     content = {
         'word_ie1': ie_wordlist[0],
-        'word_ie2': ie_wordlist[1],
-        'word_ie3': ie_wordlist[2],
+        # 'word_ie2': ie_wordlist[1],
+        # 'word_ie3': ie_wordlist[2],
         'word_rand1': trend_rensou_wordlist[0],
         'word_rand2': trend_rensou_wordlist[1],
         'word_rand3': trend_rensou_wordlist[2],
@@ -20,6 +20,8 @@ def view2(request):
         'word_rand7': trend_rensou_wordlist[6],
         'word_rand8': trend_rensou_wordlist[7],
         'word_rand9': trend_rensou_wordlist[8],
+        'wiki':wiki
 
         }
     return render(request, 'spark/view2.html', content)
+

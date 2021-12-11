@@ -77,18 +77,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-      
-      /*=================================================
-      左の単語を固定する流れ
-      ===================================================*/
-      
-      
-
 
       /*=================================================
       単語の保存処理
       ===================================================*/
-    
+      //右のボタン３つそれぞれに対し関数を作っている。やってることは同じ
+      //text()で単語を変数に保存し、くっつけて保存場所に<p>要素として追加している。
       function butotnClick(){
           var wi1 = $("#wi1").text(); 
           var value1 = $("#wr1").text(); 
@@ -104,6 +98,8 @@
           var value3 = $("#wr3").text();      
           $('.save-tango').prepend('<p>' + wi1 + " × "+ value3 + '</p>');
       }
+
+      //htmlの方にonClick=butotnClick()と記述しても同じことができる。
       let button1 = document.getElementById('wr1');
       button1.addEventListener('click', butotnClick);
       let button2 = document.getElementById('wr2');
@@ -113,31 +109,38 @@
 
       
 
-      //左を固定する関数
+      /*=================================================
+      左を固定する関数
+      ===================================================*/
+      //left_tangoという変数を定義して、固定と解除を切り替えている。この関数では変数の切り替えのみ。
+      //ajaxの方で代入操作をしているので、ここで切り替えた変数をajaxの方で参照して代入するかを決めている。
+      //左の単語のidをから要素情報を取得して色々操作する。
       let left_tango = "not_fixed";
       function fixed_tango_L(idname){
-      obj = document.getElementById(idname);
-      if (left_tango=="not_fixed") {
-        obj.style.border='inset 7px';//ボタンが押しっぱであることを表現
-        obj.style.boxShadow = "none";//固定している状態の時は影を消す
-        left_tango = "fixed"; 
-        $('#btn2').text("左の固定を解除！")
-      }
-      else  {
-        left_tango = "not_fixed";
-        obj.style.border='outset 7px';//ボタン押しっぱ表現を元に戻す
-        obj.style.boxShadow= "0px 3px #000080";// 固定を解除すると影が出現
-        $('#btn2').text("左の単語を固定！")
-      }
+        obj = document.getElementById(idname);//idから要素情報を取得
+        //固定されていない時にボタンを押した場合の処理
+        if (left_tango=="not_fixed") {
+          obj.style.border='inset 7px';//ボタンが押しっぱであることを表現
+          obj.style.boxShadow = "none";//固定している状態の時は影を消す
+          left_tango = "fixed"; 
+          $('#btn2').text("左の固定を解除！")
+        }
+        //固定されている時にボタンを押した場合の処理
+        else  {
+          left_tango = "not_fixed";
+          obj.style.border='outset 7px';//ボタン押しっぱ表現を元に戻す
+          obj.style.boxShadow= "0px 3px #000080";// 固定を解除すると影が出現
+          $('#btn2').text("左の単語を固定！")
+        }
       }
 
-      //左の単語を検索
+
+      /*=================================================
+      左の単語をGoogle検索する関数
+      ===================================================*/
       function search() { 
-        var wi1 = $("#wi1").text(); 
-        var url_google_search = 'https://www.google.com/search?'
-        window.open(url_google_search+'q='+wi1)
-
-
+        var wi1 = $("#wi1").text();  //左の単語を変数wi1に保存
+        window.open('https://www.google.com/search?q=' + wi1 ) //別タブでリンクを開く
       }
 
 
@@ -178,9 +181,10 @@
         });
         
 
+        
         //ajaxの各種設定（考える必要あり！）
         $('#ajax-number').on('submit', function(e) {
-            e.preventDefault(); //デフォだとリロードする設定になっているため、これで回避。
+            e.preventDefault(); //デフォルトだとリロードする設定になっているため、これで回避。
 
             $.ajax({
                 'url': '{% url "blog:ajax_number" %}',
@@ -195,12 +199,15 @@
             //代入する場所をidで指定してtext()関数で書き換えている。
             .done(function(response){
 
+              //左の単語が固定されてない時の処理
               if (left_tango == "not_fixed") {
                 $('#wi1').text(response.word_ie1);
                 $('#wr1').text(response.word_rand1);
                 $('#wr2').text(response.word_rand2);
                 $('#wr3').text(response.word_rand3);
               }
+
+              //左の単語が固定されている時の処理
               else { 
                 $('#wr1').text(response.word_rand1);
                 $('#wr2').text(response.word_rand2);
