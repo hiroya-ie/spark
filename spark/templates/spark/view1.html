@@ -26,7 +26,7 @@
         <div class="word_Left">
           <p>　</p>
           <button class="btn--gray--r" id="wi1" onclick="search();" style="border:outset 7px;">{{ word_ie1 }}</button>
-          <p class="fukidashi_L">{{ wiki }}</p>
+          <!-- <p class="fukidashi_L">{{ wiki }}</p> -->
           <p>　</p>
         </div>
         <div class="word_x">
@@ -206,7 +206,7 @@
                 $('#wr1').text(response.word_rand1);
                 $('#wr2').text(response.word_rand2);
                 $('#wr3').text(response.word_rand3);
-                $('.fukidashi_L').text(response.wiki);
+                // $('.fukidashi_L').text(response.wiki);
               }
 
               //左の単語が固定されている時の処理

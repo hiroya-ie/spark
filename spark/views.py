@@ -13,7 +13,7 @@ def index(request):
 
 
 def index(request):
-    ie_wordlist, trend_rensou_wordlist, _ = randomWords.randomA()
+    ie_wordlist, trend_rensou_wordlist = randomWords.randomA()
 
     content = {
         'word_ie1': ie_wordlist[0],
@@ -33,7 +33,7 @@ def index(request):
     return render(request, 'spark/index.html', content)
 
 def ajax_number(request):
-    ie_wordlist, trend_rensou_wordlist, _ = randomWords.randomA()
+    ie_wordlist, trend_rensou_wordlist = randomWords.randomA()
 
     content = {
         'word_ie1': ie_wordlist[0],
