@@ -47,7 +47,7 @@
 
       <!--リロード無しで単語更新ボタン-->
       <div class="bt">
-        <form id="ajax-number" action="{% url 'blog:ajax_wiki' %}" method="POST" class="bt">
+        <form id="ajax-wiki" action="{% url 'blog:ajax_wiki' %}" method="POST" class="bt">
             {% csrf_token %}
             <button type="submit" class="btn btn--orange">もういっかい！</button>
         </form>
@@ -181,7 +181,7 @@
             })
 
             //通信が成功した際の処理
-            //views.pyにある関数ajax-numberから戻り値をゲットし、
+            //views.pyにある関数ajax-wikiから戻り値をゲットし、
             //代入する場所をidで指定してtext()関数で書き換えている。
             .done(function(response){
 
