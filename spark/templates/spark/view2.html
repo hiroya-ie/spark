@@ -47,7 +47,7 @@
 
       <!--リロード無しで単語更新ボタン-->
       <div class="bt">
-        <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" class="bt">
+        <form id="ajax-number" action="{% url 'blog:ajax_wiki' %}" method="POST" class="bt">
             {% csrf_token %}
             <button type="submit" class="btn btn--orange">もういっかい！</button>
         </form>
@@ -173,7 +173,7 @@
             e.preventDefault(); //デフォだとリロードする設定になっているため、これで回避。
 
             $.ajax({
-                'url': '{% url "blog:ajax_number" %}',
+                'url': '{% url "blog:ajax_wiki" %}',
                 'type': 'POST',
                 'data': {
                 },
