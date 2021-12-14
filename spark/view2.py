@@ -26,7 +26,7 @@ def view2(request):
     return render(request, 'spark/view2.html', content)
 
 
-def ajax_number(request):
+def ajax_wiki(request):
     ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomB()
     
     content = {

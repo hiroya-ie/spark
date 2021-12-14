@@ -70,8 +70,6 @@ def randomA():
     result.extend(trend_wl)
     ie_list=random.sample(ie_word_list, 9)
     result.extend(ie_original_word)
-
-
     return ie_list, random.sample(result, 9)
 
 
@@ -82,7 +80,6 @@ def randomB():
     ie_list=random.sample(ie_word_list, 9)
     result.extend(ie_original_word)
 
-    # Wiki説明文
     word=ie_list[0]
     wiki= wikip(word=word)
 
