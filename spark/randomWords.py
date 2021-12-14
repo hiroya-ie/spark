@@ -71,14 +71,22 @@ def randomA():
     ie_list=random.sample(ie_word_list, 9)
     result.extend(ie_original_word)
 
-    # 連想サイトスクレイピング
-    # rensou_wl = wlist
-    # result.extend(rensou_wl)
+
+    return ie_list, random.sample(result, 9)
+
+
+#wikiあり
+def randomB():
+    result = []
+    result.extend(trend_wl)
+    ie_list=random.sample(ie_word_list, 9)
+    result.extend(ie_original_word)
 
     # Wiki説明文
-    # word=ie_list[0]
-    # wiki= wikip(word=word)
-    return ie_list, random.sample(result, 9)
+    word=ie_list[0]
+    wiki= wikip(word=word)
+
+    return ie_list, random.sample(result, 9), wiki
 
 
 
@@ -106,5 +114,5 @@ def wikip(word):
   try:
     line=wikipedia.summary(word)
   except wikipedia.exceptions.DisambiguationError as e:
-    line= "自分で調べろ!"
+    line= "自分で調べてください"
   return line
