@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import wikipedia
 import warnings
+import sqlite3
 
 
 ie_word_list=["人工知能", "WEB","スマホ","API","拡張現実", "仮想現実", "自然言語処理", "画像処理", "機械学習", 
@@ -85,6 +86,23 @@ def randomB():
 
     return ie_list, random.sample(result, 9), wiki
 
+
+
+#wikiあり(DB)
+def randomC():
+    result = []
+    result.extend(trend_wl)
+    ie_list=random.sample(ie_word_list, 9)
+    result.extend(ie_original_word)
+
+    #DBからwiki取得
+    conn = sqlite3.connect('./wiki.db')
+    c = conn.cursor()
+    word = ie_list[0]
+    wiki=c.execute("SELECT wiki_description FROM articles where word = '%s';" %(word)).fetchone()[0]
+    conn.commit()
+    conn.close()
+    return ie_list, random.sample(result, 9), wiki
 
 
 

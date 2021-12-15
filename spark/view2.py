@@ -5,7 +5,7 @@ from django.http import JsonResponse
 
 
 def view2(request):
-    ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomB()
+    ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomC()
 
     content = {
         'word_ie1': ie_wordlist[0],
@@ -27,7 +27,7 @@ def view2(request):
 
 
 def ajax_wiki(request):
-    ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomB()
+    ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomC()
     
     content = {
         'word_ie1': ie_wordlist[0],
