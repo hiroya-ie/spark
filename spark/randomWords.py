@@ -102,6 +102,8 @@ def randomC():
     wiki=c.execute("SELECT wiki_description FROM articles where word = '%s';" %(word)).fetchone()[0]
     conn.commit()
     conn.close()
+    if wiki=="自分で調べてください!" :
+      wiki="クリックしてください！"
     return ie_list, random.sample(result, 9), wiki
 
 
