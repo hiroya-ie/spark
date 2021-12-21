@@ -59,7 +59,7 @@
 
       <!--リロード無しで単語更新ボタン-->
       <div class="button-wrapper">
-        <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" >
+        <form id="ajax-wiki" action="{% url 'blog:ajax_wiki' %}" method="POST" >
             {% csrf_token %}
             <button type="submit" class="btn btn--orange">もういっかい！</button>
         </form>
@@ -191,11 +191,11 @@
         });
 
 
-        $('#ajax-number').on('submit', function(e) {
+        $('#ajax-wiki').on('submit', function(e) {
             e.preventDefault();
 
             $.ajax({
-                'url': '{% url "blog:ajax_number" %}',
+                'url': '{% url "blog:ajax_wiki" %}',
                 'type': 'POST',
                 'data': {
                 },
