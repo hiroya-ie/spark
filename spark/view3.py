@@ -23,7 +23,7 @@ def view3(request):
         'wiki':wiki
 
         }
-    return render(request, 'spark/view2.html', content)
+    return render(request, 'spark/view3.html', content)
 
 
 def ajax_wiki(request):
