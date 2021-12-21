@@ -202,12 +202,24 @@
                 'dataType': 'json'
             })
             .done(function(response){
+              if (left_tango == "not_fixed") {
                 $('#wi1').text(response.word_ie1);
                 $('#wr1').text(response.word_rand1);
                 $('#wr2').text(response.word_rand2);
                 $('#wr3').text(response.word_rand3);
+                $('.fukidashi_L').text(response.wiki);
                 
-            });
+
+              }
+              else { 
+                $('#wr1').text(response.word_rand1);
+                $('#wr2').text(response.word_rand2);
+                $('#wr3').text(response.word_rand3);
+                
+                
+              }
+                
+              });
         });
 
 
