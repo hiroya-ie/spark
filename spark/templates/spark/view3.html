@@ -42,18 +42,16 @@
             <button class="btn btn--word-R" type="submit" id="wr3">{{ word_rand3 }}</button>
           
         </div>
-        
       </div>
-      <label class="open" for="pop-up">保存したアイデアをを表示する</label>
-      <input type="checkbox" id="pop-up">
-      <div class="overlay">
-        <div class="window">
-          <label class="close" for="pop-up">×</label>
-          <p class="saved-tango" id="saved-text">
-            <a>保存したアイデアはありません</a>
-          </p>
-        </div>
-      </div>
+    </div>
+
+
+
+    <div>
+      <h2>保存されたアイデア</h2>
+      <div class="saved-tango" id="saved3"></div>
+    </div>
+  
 
     
 
@@ -63,34 +61,9 @@
             {% csrf_token %}
             <button type="submit" class="btn btn--orange">もういっかい！</button>
         </form>
-        
-
-      
         <button class="btn btn--rannge" id="btn2" onclick="fixed_tango_L('wi1');" >左の単語を固定！</button>
-      
-
-      
-      <!--単語保存場所-->
-      <!-- <div class = "bt-2">
-      <checkbox class = "btn save" id=save>保存
-        <iframe  class= "saved-tango" src="sample" width="400" height="400"></iframe>
-      </checkbox>
-      </div> -->
-
-
-
-        <div><p class="slide-btn">＋保存を見てみる</p></div>
-        <div class="slide-contents" style="display: none;">
-          <!--ここに内容を掲載-->
-          <div class="saved-tango">
-          </div>
-        </div>
-        
       </div>
-      
 
-      
-    </div>
 
 
     <!--JavaScript-->
@@ -107,19 +80,19 @@
           var wi1 = $("#wi1").text(); 
           var value1 = $("#wr1").text(); 
           $('.saved-tango').prepend('<p>' + wi1 + " × "+ value1 + '</p>');
-          $('#saved-text a').text("");
+          
       }
       function butotnClick2(){       
           var wi1 = $("#wi1").text(); 
           var value2 = $("#wr2").text();
           $('.saved-tango').prepend('<p>' + wi1 + " × "+ value2 + '</p>');
-          $('#saved-text a').text("");
+          
       }
       function butotnClick3(){    
           var wi1 = $("#wi1").text(); 
           var value3 = $("#wr3").text();      
           $('.saved-tango').prepend('<p>' + wi1 + " × "+ value3 + '</p>');
-          $('#saved-text a').text("");
+          
       }
       let button1 = document.getElementById('wr1');
       button1.addEventListener('click', butotnClick);

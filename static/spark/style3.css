@@ -1,346 +1,377 @@
 html {
-    font-size: 75%;
-    -webkit-box-sizing: border-box;
+  font-size: 75%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 481px) {
+  html {
+    font-size: 50%;
+  }
+}
+@media screen and (min-width: 840px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+.a1 {
+  padding: 5px;
+  text-align: center;
+  font-size: 2rem;
+  clear: left;
+}
+
+.btn-reload {
+  margin: 100px;
+  text-align: center;
+  font-size: 2rem;
+  clear: left;
+  
+}
+
+div { 
+  border: solid 8px red;
+  
+}
+
+
+@media screen and (min-width: 481px) {
+  .word-wrapper {
+    font-weight: bold;
+    font-size: 2rem;
+    width: 80%;
+    margin-left: 0;
+    margin-right: auto;
     box-sizing: border-box;
-  }
-  
-  @media screen and (min-width: 481px) {
-    html {
-      font-size: 50%;
-    }
-  }
-  @media screen and (min-width: 840px) {
-    html {
-      font-size: 90%;
-    }
-  }
-  
-  .a1 {
-    padding: 5px;
-    text-align: center;
-    font-size: 2rem;
-    clear: left;
-  }
-  
-  .btn-reload {
-    margin: 100px;
-    text-align: center;
-    font-size: 2rem;
-    clear: left;
-    
-  }
-  
-  div { 
-    /* border: solid 8px red; */
-    
-  }
-  
-  @media screen and (min-width: 481px) {
-    .word-wrapper {
-      font-weight: bold;
-      font-size: 2rem;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      box-sizing: border-box;
-      display: flex; 
-      flex-wrap: wrap;  
-      position:relative;
-  
-    }
-    .save,
-    a.save,
-    button.save {
-      /* width: 100%; */
-      /* float: left; */
-      /* margin: 0; */
-      /* margin-top: 60px; */
-      /* clear:both; */
-      /* text-align: right; */
-      position:absolute;
-      top: 150px;
-      right:0 ;
-  
-    }
-    
-  
-  
-    .word_box1 {
-      float: left;
-      width: 100%;
-  
-    }
-    
-    .word_Left {
-      text-align: right;
-      float: left;
-      width: 45%;
-      font-size: 2rem;
-      position: relative;
-    }
-    .fukidashi_L {
-      display: none;
-      width: 60%;
-      position: absolute;
-      top: 0;
-      right: 190px;
-      padding: 16px;
-      border-radius: 5px;
-      background: #33cc99;
-      color: #000;
-      font-weight: normal;
-      font-size: 1.2rem;
-      text-align: left;
-  
-  
-    }
-    .fukidashi_L:after {
-      position: absolute;
-      width: 0;
-      height: 0;
-      left: 0;
-      bottom: -19px;
-      margin-right: 10px;
-      border: solid transparent;
-      border-color: rgba(51, 204, 153, 0);
-      border-top-color: #33cc99;
-      border-width: 10px;
-      pointer-events: none;
-      content: " ";
-    }
-    #wi1:hover + .fukidashi_L {
-      display: block;
-    }
-  
-  
-  
-    .word_x {
-      text-align: center;
-      float: left;
-      width: 10%;
-      font-size: 2.2rem;
-    }
-  
-    .word_Right {
-      text-align: left;
-      float: left;
-      width: 45%;
-    }
-  
-  }
-  
-  
-  
-  .button-wrapper{
-    text-align: center;
-    width: 100%;
-    /* margin-top:1.5rem; */
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto 0px;
+    /* display: flex; 
+    flex-wrap: wrap;   */
     position:relative;
+    text-align: left;
+    z-index:2
+
   }
-  
-  .open {
-      cursor:pointer; /* マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように */
-    position: absolute;
-    right: 0px;
-    top: 300px;
-    font-size: 18px;
-    border: none;
-    color: #aaa;
-    border-radius: 20px;
-    background: #fffb00;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  #pop-up {
-      display: none; /* label でコントロールするので input は非表示に */
-  }
-  .overlay {
-      display: none; /* input にチェックが入るまでは非表示に */
-  }
-  #pop-up:checked + .overlay {
-      display: block;
-      z-index: 9999;
-      background-color: #00000070;
-      position: fixed;
-      width: 100%;
-      height: 100vh;
-      top: 0;
-      left: 0;
-  }
-  .window {
-      width: 100vw;
-      max-width: 580px;
-      height: 440px;
-      background-color: #ffffff;
-      border-radius: 6px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-  }
-  #saved-text {
-      font-size: 18px;
-      margin: 0;
-  }
-  .close {
-      cursor:pointer;
-      position: absolute;
-      top: 4px;
-      right: 4px;
-      font-size: 20px;
+  .save,
+  a.save,
+  button.save {
+    width: 30%;
+    /* float: left; */
+    /* margin: 0; */
+    /* margin-top: 60px; */
+    /* clear:both; */
+    /* text-align: right; */
+    position:absolute;
+    top: 150px;
+    right:0 ;
+
   }
   
   
-  
-  
-  
-  
-  
-  
-  @media screen and (min-width: 840px) {
-    /* .word_set {
-      width: 33%;
-    } */
-    
-  
+
+
+  .word_box1 {
+    float: left;
+    width: 100%;
+
   }
   
-  /*まずはお決まりのボックスサイズ算出をborer-boxに */
-  *,
-  *:before,
-  *:after {
-    -webkit-box-sizing: inherit;
-    box-sizing: inherit;
-  }
-  
-  
-  /*ボタン系の共通設定*/
-  .btn,
-  a.btn, 
-  button.btn{
-    font-size: 1.7rem; /*文字のサイズ*/
-    font-weight: 700; /*文字の太さ*/
-    line-height: 1.5; /*行間の幅*/
+  .word_Left {
+    text-align: right;
+    float: left;
+    width: 45%;
+    font-size: 2rem;
     position: relative;
-    /* display: inline-block; */
-    padding: 1rem 4rem;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    color: #212529;
-    border-radius: 0.5rem;
+  }
+  .fukidashi_L {
+    display: none;
+    width: 60%;
+    position: absolute;
+    top: 0;
+    right: 190px;
+    padding: 16px;
+    border-radius: 5px;
+    background: #33cc99;
+    color: #000;
+    font-weight: normal;
+    font-size: 1.2rem;
+    text-align: left;
     
-    
+    max-height:580px;
+
+
   }
-  
-  /*右の単語ボタンの設定*/
-  .btn--word-R,
-  a.btn--word-R,
-  button.btn--word-R {
-    display: flex; 
-    flex-wrap: wrap;  
-    padding: 1rem 2rem;
-    margin: 3%;
-    box-shadow: 0px 3px #000080;
-    
-    
+  .fukidashi_L:after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0;
+    bottom: -19px;
+    margin-right: 10px;
+    border: solid transparent;
+    border-color: rgba(51, 204, 153, 0);
+    border-top-color: #33cc99;
+    border-width: 10px;
+    pointer-events: none;
+    content: " ";
   }
-  
-  /*左の単語ボタンの設定*/
-  .btn--word-L,
-  a.btn--word-L,
-  button.btn--word-L {
-    padding: 1rem 2rem;
-    margin-right: 2%;
-    box-shadow: 0px 3px #000080;
-  }
-  /*左の単語ボタンの設定(固定された時)*/
-  .btn--word-L:active, 
-  .btn--word-L:active {
-    box-shadow: none;
-    top: 5px;
-  }
-  
-  /*単語更新ボタンの設定*/
-  .btn--orange,
-  a.btn--orange {
-    color: #fff;
-    background-color: #eb6100;
-    margin-top: 1rem;
-  }
-  .btn--orange:hover,
-  a.btn--orange:hover {
-    color: #fff;
-    background: #f56500;
-  }
-  
-  /*左の単語を固定するボタンの設定*/
-  .btn--rannge,
-  a.btn--rannge,
-  button.btn--rannge{
-    background: rgba(9, 255, 0, 0.89);
-    margin-top: 1rem;
-  }
-  .btn--rannge:hover,
-  a.btn--rannge:hover {
-    color: #fff;
-    background: rgb(9, 255, 0);
-  }
-  
-  
-  
-  
-  
-  
-  .slide-btn {
+  #wi1:hover + .fukidashi_L {
     display: block;
-    /* width: 100%; */
-    /* margin: 0 100% 1em 100%; */
+  }
+
+
+
+  .word_x {
     text-align: center;
-    padding: 7px;
-    border: none;
-    color: #aaa;
-    border-radius: 20px;
-    background: #fffb00;
-    cursor: pointer;
-  
+    float: left;
+    width: 10%;
+    font-size: 2.2rem;
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .font-main {
-    padding: 2px;
+
+  .word_Right {
+    text-align: left;
+    float: left;
+    width: 45%;
   }
+
+}
+
+
+
+.button-wrapper{
+  text-align: center;
+  width: 80%;
+  /* margin-top:1.5rem; */
   
-  #btn1 {
-    margin-bottom: 4px;
-  }
+  /* max-width: 4000px; */
   
-  .form {
-    text-align: center;
-  }
+  position:relative;
+  z-index:1;
+  left:0;
+}
+
+.open {
+	cursor:pointer; /* マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように */
+  /* position: absolute; */
+  right: 0px;
+  top: 300px;
+  font-size: 18px;
+  border: none;
+  color: #aaa;
+  border-radius: 20px;
+  background: #fffb00;
+  cursor: pointer;
+  padding: 0.5rem;
+  display:flex;
   
-  .link {
-    text-align: center;
-  }
+  
+}
+#pop-up {
+	display: none; /* label でコントロールするので input は非表示に */
+}
+.overlay {
+	display: none; /* input にチェックが入るまでは非表示に */
+}
+#pop-up:checked + .overlay {
+	display: block;
+	z-index: 9999;
+	background-color: #00000070;
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+}
+.window {
+	width: 100vw;
+	max-width: 580px;
+	height: 440px;
+	background-color: #ffffff;
+	border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+  overflow:auto;
+  position: relative;
+}
+#saved-text {
+	font-size: 18px;
+	margin: 0;
+}
+.close {
+	cursor:pointer;
+	position: absolute;
+	top: 4px;
+	right: 14px;
+	font-size: 40px;
+}
+
+#saved2 {
+  width: 29%;
+  height: 550px;
+  /* position: absolute; */
+  overflow:auto;
+  max-width: 800px;
+}
+
+#saved3{
+  width: 22%;
+  right: 0;
+  max-height: 30rem;
+  overflow: auto;
+  position: absolute;
+}
+
+
+
+
+
+@media screen and (min-width: 840px) {
+  /* .word_set {
+    width: 33%;
+  } */
+  
+  
+  
+  
+
+}
+
+/*まずはお決まりのボックスサイズ算出をborer-boxに */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+
+/*ボタン系の共通設定*/
+.btn,
+a.btn, 
+button.btn{
+  font-size: 1.7rem; /*文字のサイズ*/
+  font-weight: 700; /*文字の太さ*/
+  line-height: 1.5; /*行間の幅*/
+  position: relative;
+  /* display: inline-block; */
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+  
+  
+}
+
+/*右の単語ボタンの設定*/
+.btn--word-R,
+a.btn--word-R,
+button.btn--word-R {
+  display: flex; 
+  flex-wrap: wrap;  
+  padding: 1rem 2rem;
+  margin: 3%;
+  box-shadow: 0px 3px #000080;
+  
+  
+}
+
+/*左の単語ボタンの設定*/
+.btn--word-L,
+a.btn--word-L,
+button.btn--word-L {
+  padding: 1rem 2rem;
+  margin-right: 2%;
+  box-shadow: 0px 3px #000080;
+}
+/*左の単語ボタンの設定(固定された時)*/
+.btn--word-L:active, 
+.btn--word-L:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+/*単語更新ボタンの設定*/
+.btn--orange,
+a.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+  margin-top: 1rem;
+}
+.btn--orange:hover,
+a.btn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+/*左の単語を固定するボタンの設定*/
+.btn--rannge,
+a.btn--rannge,
+button.btn--rannge{
+  background: rgba(9, 255, 0, 0.89);
+  margin-top: 1rem;
+}
+.btn--rannge:hover,
+a.btn--rannge:hover {
+  color: #fff;
+  background: rgb(9, 255, 0);
+}
+
+
+
+
+
+
+.slide-btn {
+  display: flex;
+  width: 29%;
+  /* margin: 0 100% 1em 100%; */
+  text-align: center;
+  padding: 7px;
+  border: none;
+  color: #aaa;
+  border-radius: 20px;
+  background: #fffb00;
+  cursor: pointer;
+  margin-right: 0;
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+.font-main {
+  padding: 2px;
+}
+
+#btn1 {
+  margin-bottom: 4px;
+}
+
+.form {
+  text-align: center;
+}
+
+.link {
+  text-align: center;
+}
