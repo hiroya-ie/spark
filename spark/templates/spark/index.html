@@ -7,105 +7,176 @@
     <title>Spark</title>
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'spark/style.css' %}">
+    <script src="https://kit.fontawesome.com/5d7787ac73.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class=link>
-      <a href="view1">view1</a>
-      <a href="view2">view2</a>
-      <a href="view3">view3</a>
-      <a href="view4">view4</a>
-      <a href="view5">view5</a>
+
+    <!-- OP animation-->
+    <div class="shutter">
+      <img src="{% static 'spark/images/spark_op.svg'%}" class="logo" alt="ロゴ">
     </div>
-    <div class="a1">
-      <h1>新しいアイディアを探し出せ。</h1>
-    </div>
+    <div class="img"></div>
 
-    <!--ワードリスト-->
-    <div class="word">
-      <div class="word_set">
-        <div class="word_Left">
-          <p>　</p>
-          <p id="wi1">{{word_ie1}}</p>
-          <p>　</p>
+
+    <!-- header -->
+    <header>
+      <h1><a href="#" class=title><i class="far fa-lightbulb">Spark</i></a></h1>
+      <form class="viewSelect" method="post">
+        <div>
+          <select name="ViewSelect" onChange="location.href=value;">
+          <option value="#">ページを選択</option>
+          <option value=".">Home</option>
+          <option value="view1">View1</option>
+          <option value="view2">View2</option>
+          <option value="view3">View3</option>
+          <option value="view4">View4</option>
+          <option value="view5">View5</option>
+          </select>
         </div>
-        <div class="word_x">
-          <p>　</p>
-          <p> × </p>
-          <p>　</p>
-        </div>
-        <div class="word_Right">
-          <p id="wr1">{{word_rand1}}</p>
-          <p id="wr2">{{word_rand2}}</p>
-          <p id="wr3">{{word_rand3}}</p>
+      </form>
+      <button class="question"><i class="far fa-question-circle"></i></button>
+    </header>
+
+    <!-- contents -->
+
+    <!-- wordList -->
+
+    <div class="contents">
+      <div class="contents-item wordWrapper">
+        <div class="words">
+          <div class="wordLeft">
+            <button class="bt-left" id="wi1" onclick="search();">{{ word_ie1 }}</button>
+          </div>
+          <div class="cross">
+            <p>×</p>
+          </div>
+          <div class="wordRight">
+            {% csrf_token %}   
+            <button class="btn bt-word" type="submit" id="wr1">{{ word_rand1 }}</button>
+            <button class="btn bt-word" type="submit" id="wr2">{{ word_rand2 }}</button>
+            <button class="btn bt-word" type="submit" id="wr3">{{ word_rand3 }}</button>
           </div>
         </div>
-
-
-        <div class="word_set">
-          <div class="word_Left">
-            <p>　</p>
-            <p id="wi2">{{word_ie2}}</p>
-            <p>　</p>
-          </div>
-          <div class="word_x">
-            <p>　</p>
-            <p> × </p>
-            <p>　</p>
-          </div>
-          <div class="word_Right">
-            <p id="wr4">{{word_rand4}}</p>
-            <p id="wr5">{{word_rand5}}</p>
-            <p id="wr6">{{word_rand6}}</p>
-            </div>
+        <div class="buttun">
+          <form id="ajax-wiki" action="{% url 'blog:ajax_wiki' %}" method="POST" class="bt">
+              {% csrf_token %}
+              <button type="submit" class="btn bt-reload">もういっかい！</button>
+          </form>
         </div>
-
-
-          <div class="word_set">
-            <div class="word_Left">
-              <p>　</p>
-              <p id="wi3">{{word_ie3}}</p>
-              <p>　</p>
-            </div>
-            <div class="word_x">
-              <p>　</p>
-              <p> × </p>
-              <p>　</p>
-            </div>
-            <div class="word_Right">
-              <p id="wr7">{{word_rand7}}</p>
-              <p id="wr8">{{word_rand8}}</p>
-              <p id="wr9">{{word_rand9}}</p>
-            </div>
-          </div>
+        <div class="buttun">
+          <button class="btn bt-reload" id="btn2" onclick="fixed_tango_L('wi1');" >左の単語を固定！</button>
+        </div>
       </div>
+
+      <div class="contents-item keepWrapper">
+        <div class="keepTitle">
+          <h2>Keep</h2>
+          <div class="save-tango">
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <!--フォーム-->
+    <!-- <div class="form">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKsVhKNyarTrIrXJDwqlTF5dXa3HdOQ1ckzcK6v2sV96-TZg/viewform?embedded=true" width="640" height="645" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+    </div> -->
+
+    <!-- モーダルエリアここから -->
+    <section id="modalArea" class="modalArea">
+      <div id="modalBg" class="modalBg"></div>
+      <div class="modalWrapper">
+        <div class="modalContents">
+          
+          <p>{{ wiki }}</p>
+        </div>
+        <div id="closeModal" class="closeModal">
+          ×
+        </div>
+      </div>
+    </section>
+    <!-- モーダルエリアここまで -->
+
+  
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <!--JavaScript-->
+    <script type="text/javascript">
+      jQuery(function($){ jQuery(".slide-btn").click(function(){
+        jQuery($(this).parent().next(".slide-contents")).animate( {height: "toggle", opacity: "toggle"}, "nomal" );
+        });
+      }); 
+    </script>
+
+    <script>
+      $(function () {
+      $('#wi1').click(function(){
+          $('#modalArea').fadeIn();
+      });
+      $('#closeModal , #modalBg').click(function(){
+        $('#modalArea').fadeOut();
+      });
+    });
+
+
+      function butotnClick(){
+        var wi1 = $("#wi1").text(); 
+        var value1 = $('#wr1').text(); 
+        $('.save-tango').prepend('<p>' + wi1  +  " × "+ value1 + '</p>');
+      }
+      function butotnClick2(){       
+          var wi1 = $("#wi1").text(); 
+          var value2 = $("#wr2").text();
+          $('.save-tango').prepend('<p>' + wi1  + " × "+ value2 + '</p>');
+      }
+      function butotnClick3(){    
+          var wi1 = $("#wi1").text(); 
+          var value3 = $("#wr3").text();      
+          $('.save-tango').prepend('<p>' + wi1 + " × "+ value3 + '</p>');
+      }
+      let button1 = document.getElementById('wr1');
+      button1.addEventListener('click', butotnClick);
+      let button2 = document.getElementById('wr2');
+      button2.addEventListener('click', butotnClick2);
+      let button3 = document.getElementById('wr3');
+      button3.addEventListener('click', butotnClick3);
 
       
 
-    <!--リロードボタン-->
-    <div class="btn-reload">
-      <button class="btn btn--orange" onclick="window.location.reload();">もういっかい！</button>
-    </div>
-    <!--リロード無しで要素更新ボタン-->
-    <div class="bt">
-      <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" class="bt">
-          {% csrf_token %}
-          <button type="submit" class="btn btn--orange">もういっかい！</button>
-      </form>
+      //左を固定する関数
+      let left_tango = "not_fixed";
+      function fixed_tango_L(idname){
+      obj = document.getElementById(idname);
+      if (left_tango=="not_fixed") {
+        obj.style.border='solid 1px';//ボタンが押しっぱであることを表現
+        left_tango = "fixed"; 
+        $('#btn2').text("左の固定を解除！")
+      }
+      else  {
+        left_tango = "not_fixed";
+        obj.style.border='none';//ボタン押しっぱ表現を元に戻す
+        $('#btn2').text("左の単語を固定！")
+      }
+      }
 
-    </div>
-
-    <!--フォーム-->
-    <div class="form">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKsVhKNyarTrIrXJDwqlTF5dXa3HdOQ1ckzcK6v2sV96-TZg/viewform?embedded=true" width="640" height="645" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-    </div>
-
-    <!--JavaScript-->
-    <script type="text/javascript" src="{% static 'spark/sample.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
+      //左の単語を検索
+      //function search() { 
+      //  var wi1 = $("#wi1").text(); 
+      //  var url_google_search = 'https://www.google.com/search?'
+      //  window.open(url_google_search+'q='+wi1)
+      //}
 
 
-      //ajaxのおまじない
+      
+
+
+
+      //ajaxのおまじない(今はあんまり考える必要なし！)
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -136,23 +207,35 @@
                 }
             }
         });
+        
 
-
-        $('#ajax-number').on('submit', function(e) {
+        //ajaxの各種設定（考える必要あり！）
+        $('#ajax-wiki').on('submit', function(e) {
             e.preventDefault();
 
             $.ajax({
-                'url': '{% url "blog:ajax_number" %}',
+                'url': '{% url "blog:ajax_wiki" %}',
                 'type': 'POST',
                 'data': {
                 },
                 'dataType': 'json'
             })
             .done(function(response){
+
+              if (left_tango == "not_fixed") {
                 $('#wi1').text(response.word_ie1);
                 $('#wr1').text(response.word_rand1);
                 $('#wr2').text(response.word_rand2);
                 $('#wr3').text(response.word_rand3);
+                $('.fukidashi_L').text(response.wiki);
+
+              }
+              else { 
+                $('#wr1').text(response.word_rand1);
+                $('#wr2').text(response.word_rand2);
+                $('#wr3').text(response.word_rand3);
+                
+              }
                 
             });
         });
