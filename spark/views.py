@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 
 
-def view4(request):
+def index(request):
     ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomC()
 
     content = {
