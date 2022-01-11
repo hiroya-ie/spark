@@ -34,7 +34,7 @@
           </select>
         </div>
       </form>
-      <button class="question"><i class="far fa-question-circle"></i></button>
+      <button class="question" id="openModal2"><i class="far fa-question-circle"></i></button>
     </header>
 
     <!-- contents -->
@@ -103,7 +103,7 @@
     <!-- モーダルエリアここまで -->
 
 
-    
+
 
     <!-- ヒントモーダルエリアここから -->
     <section id="modalArea2" class="modalArea2">
@@ -112,24 +112,15 @@
       <div class="modalContents2">
         <p>左の単語をクリックすると単語についての説明が出てくるよ!<br>右の単語をクリックすると単語の組み合わせが保存されるよ!<br>もういっかいボタンを押すと単語の組み合わせが変わるよ!</p>
         </div>
-        <div id="closeModal" class="closeModal">
+        <div id="closeModal2" class="closeModal2">
         ×
         </div>
       </div>
       </section>
     <!-- ヒントモーダルエリアここまで -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- ヒントモーダルjs -->
-    <script>
-      $(function () {
-        $('#openModal2').click(function(){
-          $('#modalArea2').fadeIn();
-        });
-        $('#closeModal2 , #modalBg2').click(function(){
-          $('#modalArea2').fadeOut();
-        });
-      });
-    </script>
+    
+    
+    
 
 
 
@@ -149,14 +140,25 @@
     </script>
 
     <script>
+      //wikiモーダル
       $(function () {
-      $('#wi1').click(function(){
+        $('#wi1').click(function(){
           $('#modalArea').fadeIn();
+        });
+        $('#closeModal , #modalBg').click(function(){
+          $('#modalArea').fadeOut();
+        });
       });
-      $('#closeModal , #modalBg').click(function(){
-        $('#modalArea').fadeOut();
+
+      //ヒントボタン
+      $(function () {
+        $('#openModal2').click(function(){
+          $('#modalArea2').fadeIn();
+        });
+        $('#closeModal2 , #modalBg2').click(function(){
+          $('#modalArea2').fadeOut();
+        });
       });
-    });
 
 
       function butotnClick(){
