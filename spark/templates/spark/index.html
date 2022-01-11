@@ -15,7 +15,7 @@
     <div class="shutter">
       <img src="{% static 'spark/images/spark_op.svg'%}" class="logo" alt="ロゴ">
     </div>
-    <div class="img"></div>
+    <!-- <div class="img"></div> -->
 
 
     <!-- header -->
@@ -132,12 +132,12 @@
 
 
     <!--JavaScript-->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       jQuery(function($){ jQuery(".slide-btn").click(function(){
         jQuery($(this).parent().next(".slide-contents")).animate( {height: "toggle", opacity: "toggle"}, "nomal" );
         });
       }); 
-    </script>
+    </script> -->
 
     <script>
       //wikiを表示
@@ -160,7 +160,7 @@
         });
       });
 
-      //Keepに単語組み合わせを保存
+      //Keepに単語の組み合わせを保存
       function butotnClick(){
         var wi1 = $("#wi1").text(); 
         var value1 = $('#wr1').text(); 
@@ -202,12 +202,6 @@
       }
       }
 
-      //左の単語を検索
-      //function search() { 
-      //  var wi1 = $("#wi1").text(); 
-      //  var url_google_search = 'https://www.google.com/search?'
-      //  window.open(url_google_search+'q='+wi1)
-      //}
 
 
       
@@ -249,7 +243,7 @@
 
         //ajaxの各種設定（考える必要あり！）
         $('#ajax-wiki').on('submit', function(e) {
-            e.preventDefault();
+            e.preventDefault();//デフォ設定のリロードを回避
 
             $.ajax({
                 'url': '{% url "blog:ajax_wiki" %}',
@@ -259,7 +253,7 @@
                 'dataType': 'json'
             })
             .done(function(response){
-
+              //左の単語が固定されていない場合、全て更新
               if (left_tango == "not_fixed") {
                 $('#wi1').text(response.word_ie1);
                 $('#wr1').text(response.word_rand1);
@@ -268,6 +262,7 @@
                 $('#wiki-modal').text(response.wiki);
 
               }
+              //左の単語が固定されている場合、右の単語のみ更新(左の単語、wikiは更新しない)
               else { 
                 $('#wr1').text(response.word_rand1);
                 $('#wr2').text(response.word_rand2);
