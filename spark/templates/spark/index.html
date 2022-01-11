@@ -92,7 +92,7 @@
     <section id="modalArea" class="modalArea">
       <div id="modalBg" class="modalBg"></div>
       <div class="modalWrapper">
-        <div class="modalContents">
+        <div class="modalContents" id="wiki-modal" >
           <p>{{ wiki }}</p>
         </div>
         <div id="closeModal" class="closeModal">
@@ -106,13 +106,13 @@
 
 
     <!-- ヒントモーダルエリアここから -->
-    <section id="modalArea2" class="modalArea2">
-      <div id="modalBg2" class="modalBg2"></div>
-      <div class="modalWrapper2">
-      <div class="modalContents2">
+    <section id="modalArea2" class="modalArea">
+      <div id="modalBg2" class="modalBg"></div>
+      <div class="modalWrapper">
+      <div class="modalContents">
         <p>左の単語をクリックすると単語についての説明が出てくるよ!<br>右の単語をクリックすると単語の組み合わせが保存されるよ!<br>もういっかいボタンを押すと単語の組み合わせが変わるよ!</p>
         </div>
-        <div id="closeModal2" class="closeModal2">
+        <div id="closeModal2" class="closeModal">
         ×
         </div>
       </div>
@@ -264,7 +264,7 @@
                 $('#wr1').text(response.word_rand1);
                 $('#wr2').text(response.word_rand2);
                 $('#wr3').text(response.word_rand3);
-                $('.modalContents').text(response.wiki);
+                $('#wiki-modal').text(response.wiki);
 
               }
               else { 

@@ -281,10 +281,11 @@ header .question:active {
 
 
 
-.modalArea2 {
+
+/* .modalArea2 {
   display: none;
   position: fixed;
-  z-index: 10; /*サイトによってここの数値は調整 */
+  z-index: 10; 
   top: 0;
   left: 0;
   width: 100%;
@@ -313,7 +314,7 @@ header .question:active {
   top: 0.5rem;
   right: 1rem;
   cursor: pointer;
-}
+} */
 
 
 
