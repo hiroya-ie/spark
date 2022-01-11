@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 
 
-def view4(request):
+def index(request):
     ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomC()
 
     content = {
@@ -23,7 +23,7 @@ def view4(request):
         'wiki':wiki
 
         }
-    return render(request, 'spark/view4.html', content)
+    return render(request, 'spark/index.html', content)
 
 
 def ajax_wiki(request):
