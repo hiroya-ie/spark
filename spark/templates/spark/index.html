@@ -34,7 +34,7 @@
           </select>
         </div>
       </form>
-      <button class="question" id="openModal2"><i class="far fa-question-circle"></i></button>
+      <button class="question" id="hint-openModal"><i class="far fa-question-circle"></i></button>
     </header>
 
     <!-- contents -->
@@ -88,31 +88,31 @@
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKsVhKNyarTrIrXJDwqlTF5dXa3HdOQ1ckzcK6v2sV96-TZg/viewform?embedded=true" width="640" height="645" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
     </div> -->
 
-    <!-- モーダルエリアここから -->
-    <section id="modalArea" class="modalArea">
-      <div id="modalBg" class="modalBg"></div>
+    <!-- wikiモーダルエリアここから -->
+    <section id="wiki-modalArea" class="modalArea">
+      <div id="wiki-modalBg" class="modalBg"></div>
       <div class="modalWrapper">
         <div class="modalContents" id="wiki-modal" >
           <p>{{ wiki }}</p>
         </div>
-        <div id="closeModal" class="closeModal">
+        <div id="wiki-closeModal" class="closeModal">
           ×
         </div>
       </div>
     </section>
-    <!-- モーダルエリアここまで -->
+    <!-- wikiモーダルエリアここまで -->
 
 
 
 
     <!-- ヒントモーダルエリアここから -->
-    <section id="modalArea2" class="modalArea">
-      <div id="modalBg2" class="modalBg"></div>
+    <section id="hint-modalArea" class="modalArea">
+      <div id="hint-modalBg" class="modalBg"></div>
       <div class="modalWrapper">
       <div class="modalContents">
         <p>左の単語をクリックすると単語についての説明が出てくるよ!<br>右の単語をクリックすると単語の組み合わせが保存されるよ!<br>もういっかいボタンを押すと単語の組み合わせが変わるよ!</p>
         </div>
-        <div id="closeModal2" class="closeModal">
+        <div id="hint-closeModal" class="closeModal">
         ×
         </div>
       </div>
@@ -140,27 +140,27 @@
     </script>
 
     <script>
-      //wikiモーダル
+      //wikiを表示
       $(function () {
         $('#wi1').click(function(){
-          $('#modalArea').fadeIn();
+          $('#wiki-modalArea').fadeIn();
         });
-        $('#closeModal , #modalBg').click(function(){
-          $('#modalArea').fadeOut();
+        $('#wiki-closeModal , #wiki-modalBg').click(function(){
+          $('#wiki-modalArea').fadeOut();
         });
       });
 
-      //ヒントボタン
+      //ヒントを表示
       $(function () {
-        $('#openModal2').click(function(){
-          $('#modalArea2').fadeIn();
+        $('#hint-openModal').click(function(){
+          $('#hint-modalArea').fadeIn();
         });
-        $('#closeModal2 , #modalBg2').click(function(){
-          $('#modalArea2').fadeOut();
+        $('#hint-closeModal , #hint-modalBg').click(function(){
+          $('#hint-modalArea').fadeOut();
         });
       });
 
-
+      //Keepに単語組み合わせを保存
       function butotnClick(){
         var wi1 = $("#wi1").text(); 
         var value1 = $('#wr1').text(); 
@@ -185,6 +185,7 @@
 
       
 
+      
       //左を固定する関数
       let left_tango = "not_fixed";
       function fixed_tango_L(idname){
