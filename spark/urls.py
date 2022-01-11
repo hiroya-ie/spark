@@ -10,6 +10,7 @@ from . import view5
 app_name = 'blog'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('/ajax-number/', views.ajax_number, name='ajax_number'),
     path('view1', view1.view1, name = 'view1'),
     path('view2', view2.view2, name = 'view2'),
     path('view3', view3.view3, name = 'view3'),
