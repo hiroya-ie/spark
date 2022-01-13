@@ -6,96 +6,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spark</title>
     <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'spark/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'spark/style5.css' %}">
+    <!--JavaScript-->
+    <script src="https://kit.fontawesome.com/5d7787ac73.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
-    <div class=link>
-      <a href="view1">view1</a>
-      <a href="view2">view2</a>
-      <a href="view3">view3</a>
-      <a href="view4">view4</a>
-      <a href="view5">view5</a>
-    </div>
-    <div class="a1">
-      <h1>新しいアイディアを探し出せ。</h1>
+
+    <!-- OP animation-->
+    <div class="shutter">
+      <img src="{% static 'spark/images/spark_op.svg'%}" class="logo" alt="ロゴ">
     </div>
 
-    <!--ワードリスト-->
-      <div class="word">
-        <div class="word_set">
-          <div class="word_L">
-            <p>{{word_ie1}}</p>
-          </div>
-          <div class="word_x">
-            <p> × </p>
-          </div>
-          <div class="word_R">
-            <p>{{word_rand1}}</p>
-            <p>{{word_rand2}}</p>
-            <p>{{word_rand3}}</p>
-            </div>
-          </div>
 
-
-          <div class="word_set">
-            <div class="word_L">
-              <p>{{word_ie2}}</p>
-            </div>
-            <div class="word_x">
-              <p> × </p>
-            </div>
-            <div class="word_R">
-              <p>{{word_rand4}}</p>
-              <p>{{word_rand5}}</p>
-              <p>{{word_rand6}}</p>
-              </div>
-          </div>
-
-
-            <div class="word_set">
-              <div class="word_L">
-                <p>{{word_ie3}}</p>
-              </div>
-              <div class="word_x">
-                <p> × </p>
-              </div>
-              <div class="word_R">
-                <p>{{word_rand7}}</p>
-                <p>{{word_rand8}}</p>
-                <p>{{word_rand9}}</p>
-              </div>
-            </div>
+    <!-- header -->
+    <header>
+      <h1><a href="#" class=title><i class="far fa-lightbulb">Spark</i></a></h1>
+      <form class="viewSelect" method="post">
+        <div>
+          <select name="ViewSelect" onChange="location.href=value;">
+          <option value="#">ページを選択</option>
+          <option value=".">Home</option>
+          <option value="view1">View1</option>
+          <option value="view2">View2</option>
+          <option value="view3">View3</option>
+          <option value="view4">View4</option>
+          <option value="view5">View5</option>
+          </select>
         </div>
-      
-
-
-    <!--リロード無しで要素更新ボタン-->
-    <div class="bt">
-      <form id="ajax-number" action="{% url 'blog:ajax_number' %}" method="POST" class="bt">
-          {% csrf_token %}
-          <button type="submit" class="btn btn--orange">もういっかい！</button>
       </form>
+      <button class="question" id="hint-openModal"><i class="far fa-question-circle"></i></button>
+    </header>
 
+    <!-- contents -->
+
+    <!-- wordList -->
+    <div class="contents">
+      <div class="contents-item wordWrapper">
+        <div class="words">
+          <div class="wordLeft">
+            <button class="bt-left" id="wi1" onclick="search();">{{ word_ie1 }}</button>
+          </div>
+          <div class="cross">
+            <p>×</p>
+          </div>
+          <div class="wordRight">
+            {% csrf_token %}   
+            <button class="btn bt-word" type="submit" id="wr1">{{ word_rand1 }}</button>
+            <button class="btn bt-word" type="submit" id="wr2">{{ word_rand2 }}</button>
+            <button class="btn bt-word" type="submit" id="wr3">{{ word_rand3 }}</button>
+          </div>
+        </div>
+        <div class="buttun">
+          <form id="ajax-wiki" action="{% url 'blog:ajax_wiki' %}" method="POST" class="bt">
+              {% csrf_token %}
+              <button type="submit" class="btn bt-reload">もういっかい！</button>
+          </form>
+        </div>
+        <div class="buttun">
+          <button class="btn bt-reload" id="btn2" onclick="fixed_tango_L('wi1');" >左の単語を固定！</button>
+        </div>
+      </div>
+
+      <div class="contents-item keepWrapper">
+        <div class="keepTitle">
+          <h2>Keep</h2>
+          <div class="save-tango">
+          </div>
+        </div>
+      </div>
     </div>
+
+
+    <!-- wikiModal -->
+    <section id="wiki-modalArea" class="modalArea">
+      <div id="wiki-modalBg" class="modalBg"></div>
+      <div class="modalWrapper">
+        <div class="modalContents" id="wiki-modal" >
+          <p>{{ wiki }}</p>
+        </div>
+        <div id="wiki-closeModal" class="closeModal">
+          ×
+        </div>
+      </div>
+    </section>
+
+
+    <!-- hintModal -->
+    <section id="hint-modalArea" class="modalArea">
+      <div id="hint-modalBg" class="modalBg"></div>
+      <div class="modalWrapper">
+      <div class="modalContents">
+        <p>左の単語をクリックすると単語についての説明が出てくるよ!<br>右の単語をクリックすると単語の組み合わせが保存されるよ!<br>もういっかいボタンを押すと単語の組み合わせが変わるよ!</p>
+        </div>
+        <div id="hint-closeModal" class="closeModal">
+        ×
+        </div>
+      </div>
+      </section>
+
 
     <!--フォーム-->
-    <div class="form">
+    <!-- <div class="form">
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKsVhKNyarTrIrXJDwqlTF5dXa3HdOQ1ckzcK6v2sV96-TZg/viewform?embedded=true" width="640" height="645" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-    </div>
+    </div> -->
+  
 
-    <!--JavaScript-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    
+    <!-- JavaScript -->
     <script>
-      //単語を保存
+      //wikiを表示
+      $(function () {
+        $('#wi1').click(function(){
+          $('#wiki-modalArea').fadeIn();
+        });
+        $('#wiki-closeModal , #wiki-modalBg').click(function(){
+          $('#wiki-modalArea').fadeOut();
+        });
+      });
+
+      //ヒントを表示
+      $(function () {
+        $('#hint-openModal').click(function(){
+          $('#hint-modalArea').fadeIn();
+        });
+        $('#hint-closeModal , #hint-modalBg').click(function(){
+          $('#hint-modalArea').fadeOut();
+        });
+      });
+
+      //単語の組み合わせをKeepに保存
       function butotnClick(){
-          var wi1 = $("#wi1").text(); 
-          var value1 = $("#wr1").text(); 
-          $('.save-tango').prepend('<p>' + wi1 + " × "+ value1 + '</p>');
+        var wi1 = $("#wi1").text(); 
+        var value1 = $('#wr1').text(); 
+        $('.save-tango').prepend('<p>' + wi1  +  " × "+ value1 + '</p>');
       }
       function butotnClick2(){       
           var wi1 = $("#wi1").text(); 
           var value2 = $("#wr2").text();
-          $('.save-tango').prepend('<p>' + wi1 + " × "+ value2 + '</p>');
+          $('.save-tango').prepend('<p>' + wi1  + " × "+ value2 + '</p>');
       }
       function butotnClick3(){    
           var wi1 = $("#wi1").text(); 
@@ -110,8 +160,30 @@
       button3.addEventListener('click', butotnClick3);
 
 
+      
+      //左の単語を固定
+      let left_tango = "not_fixed";
+      function fixed_tango_L(idname){
+      obj = document.getElementById(idname);
+      if (left_tango=="not_fixed") {
+        obj.style.border='solid 1px';//ボタンが押しっぱであることを表現
+        left_tango = "fixed"; 
+        $('#btn2').text("左の固定を解除！")
+      }
+      else  {
+        left_tango = "not_fixed";
+        obj.style.border='none';//ボタン押しっぱ表現を元に戻す
+        $('#btn2').text("左の単語を固定！")
+      }
+      }
 
-      //ajaxのおまじない
+
+
+      
+
+
+
+      //ajaxのおまじない(今はあんまり考える必要なし！)
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -142,23 +214,36 @@
                 }
             }
         });
+        
 
-
-        $('#ajax-number').on('submit', function(e) {
-            e.preventDefault();
+        //ajaxの各種設定（考える必要あり！）
+        $('#ajax-wiki').on('submit', function(e) {
+            e.preventDefault();//デフォ設定のリロードを回避
 
             $.ajax({
-                'url': '{% url "blog:ajax_number" %}',
+                'url': '{% url "blog:ajax_wiki" %}',
                 'type': 'POST',
                 'data': {
                 },
                 'dataType': 'json'
             })
             .done(function(response){
+              //左の単語が固定されていない場合、全て更新
+              if (left_tango == "not_fixed") {
                 $('#wi1').text(response.word_ie1);
                 $('#wr1').text(response.word_rand1);
                 $('#wr2').text(response.word_rand2);
                 $('#wr3').text(response.word_rand3);
+                $('#wiki-modal').text(response.wiki);
+
+              }
+              //左の単語が固定されている場合、右の単語のみ更新(左の単語、wikiは更新しない)
+              else { 
+                $('#wr1').text(response.word_rand1);
+                $('#wr2').text(response.word_rand2);
+                $('#wr3').text(response.word_rand3);
+                
+              }
                 
             });
         });
