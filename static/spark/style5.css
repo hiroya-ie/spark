@@ -338,3 +338,42 @@ header .question:active {
   transform: scale(0.8);
   }
 }
+
+
+/* ---  input left word --- */
+#input-leftword {
+	font: 35px/54px sans-serif;
+	box-sizing: border-box;
+	width: 60%;
+
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+#input-leftword:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
+}
+#input-complete {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 27pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #ff0000;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 1px 1px 3px #666666;  /* 影の設定 */
+  border        : 2px solid #ff0000;    /* 枠の指定 */
+}
+#input-complete:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #ff0000;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}

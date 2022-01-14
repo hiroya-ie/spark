@@ -103,7 +103,26 @@
         ×
         </div>
       </div>
-      </section>
+    </section>
+
+    <!-- inputModal -->
+    <section id="input-modalArea" class="modalArea">
+      <div id="input-modalBg" class="modalBg"></div>
+      <div class="modalWrapper">
+      <div class="modalContents">
+        <form action="#">
+          <input type="text" name="tango-left" id="input-leftword"/>
+          <input type="button" value="入力" id="input-complete" onclick="inputLeftWord();" >
+        </form>
+      </div>
+        <div id="input-closeModal" class="closeModal">
+        ×
+        </div>
+      </div>
+    </section>
+
+
+      
 
 
     <!--フォーム-->
@@ -175,6 +194,38 @@
         obj.style.border='none';//ボタン押しっぱ表現を元に戻す
         $('#btn2').text("左の単語を固定！")
       }
+      }
+
+
+      //左の単語を入力するためのモーダルウィンドウ表示
+      $(function () {
+        $('#input-openModal').click(function(){
+          $('#input-modalArea').fadeIn();
+          document.getElementById("input-leftword").focus()
+        });
+        $('#input-closeModal , #input-modalBg, #input-complete').click(function(){
+          $('#input-modalArea').fadeOut();
+        });
+      });
+
+      //左の単語を入力
+      const inputLeftWord = () => {
+        const textbox = document.getElementById("input-leftword");
+        const inputValue = textbox.value;
+        const output = inputValue;
+        if (inputValue != "") {
+          document.getElementById("wi1").innerHTML = output;
+          document.getElementById("wiki-modal").innerHTML = "説明はありません！";
+        }
+        $('#input-modalArea').fadeOut();
+      }
+      //Enterキーでリロードしてしまうのを防ぎ、Enter押されたら入力完了にする
+      document.getElementById("input-leftword").onkeypress = (e) => {
+        const key = e.keyCode || e.charCode || 0;
+        if (key == 13) {
+          e.preventDefault();
+          inputLeftWord();
+        }
       }
 
 
