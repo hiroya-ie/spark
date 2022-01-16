@@ -58,9 +58,9 @@
           </div>
         </div>
         <div class="buttun">
-          <form id="ajax-wiki" action="{% url 'blog:ajax_wiki' %}" method="POST" class="bt">
+          <form id="ajax-wiki"  class="bt">
               {% csrf_token %}
-              <button type="submit" class="btn bt-reload">もういっかい！(R)</button>
+              <button type="button" class="btn bt-reload" onclick="ajaxWiki();">もういっかい！(R)</button>
           </form>
         </div>
         <div class="buttun">
@@ -158,30 +158,7 @@
           });
           
         });
-  
-        //単語の組み合わせをKeepに保存
-        // function butotnClick(){
-        //   var wi1 = $("#wi1").text(); 
-        //   var value1 = $('#wr1').text(); 
-        //   $('.save-tango').prepend('<p>' + wi1  +  " × "+ value1 + '</p>');
-        // }
-        // function butotnClick2(){       
-        //     var wi1 = $("#wi1").text(); 
-        //     var value2 = $("#wr2").text();
-        //     $('.save-tango').prepend('<p>' + wi1  + " × "+ value2 + '</p>');
-        // }
-        // function butotnClick3(){    
-        //     var wi1 = $("#wi1").text(); 
-        //     var value3 = $("#wr3").text();      
-        //     $('.save-tango').prepend('<p>' + wi1 + " × "+ value3 + '</p>');
-        // }
-        // let button1 = document.getElementById('wr1');
-        // button1.addEventListener('click', butotnClick);
-        // let button2 = document.getElementById('wr2');
-        // button2.addEventListener('click', butotnClick2);
-        // let button3 = document.getElementById('wr3');
-        // button3.addEventListener('click', butotnClick3);
-  ////////////////////////////////////////////////////////////////////////////
+
   
         //単語の組み合わせをKeepに保存
         function wordSave(id){
@@ -287,16 +264,16 @@
             $('#hint-modalArea').fadeOut();
             hint="OFF"
           }
-          else if (evt.key == "r" && inputing == "False") {
+          else if (evt.key == "r" && inputing == "False" && hint == "OFF") {
             ajaxWiki();
           }
-          else if (evt.key == "j" && inputing == "False") {
+          else if (evt.key == "j" && inputing == "False" && hint == "OFF") {
             wordSave('wr1');
           }
-          else if (evt.key == "k" && inputing == "False") {
+          else if (evt.key == "k" && inputing == "False" && hint == "OFF") {
             wordSave('wr2');
           }
-          else if (evt.key == "l" && inputing == "False") {
+          else if (evt.key == "l" && inputing == "False" && hint == "OFF") {
             wordSave('wr3');
           }
         }
@@ -345,7 +322,6 @@
           });
   
           function ajaxWiki() { 
-              // e.preventDefault();//デフォ設定のリロードを回避
               $.ajax({
                   'url': '{% url "blog:ajax_wiki" %}',
                   'type': 'POST',
@@ -377,35 +353,35 @@
           
   
           //ajaxの各種設定（考える必要あり！）
-          $('#ajax-wiki').on('submit', function(e) {
-              e.preventDefault();//デフォ設定のリロードを回避
-              $.ajax({
-                  'url': '{% url "blog:ajax_wiki" %}',
-                  'type': 'POST',
-                  'data': {
-                  },
-                  'dataType': 'json'
-              })
-              .done(function(response){
-                //左の単語が固定されていない場合、全て更新
-                if (left_tango == "not_fixed") {
-                  $('#wi1').text(response.word_ie1);
-                  $('#wr1').text(response.word_rand1);
-                  $('#wr2').text(response.word_rand2);
-                  $('#wr3').text(response.word_rand3);
-                  $('#wiki-modal').text(response.wiki);
+        //   $('#ajax-wiki').on('submit', function(e) {
+        //       e.preventDefault();//デフォ設定のリロードを回避
+        //       $.ajax({
+        //           'url': '{% url "blog:ajax_wiki" %}',
+        //           'type': 'POST',
+        //           'data': {
+        //           },
+        //           'dataType': 'json'
+        //       })
+        //       .done(function(response){
+        //         //左の単語が固定されていない場合、全て更新
+        //         if (left_tango == "not_fixed") {
+        //           $('#wi1').text(response.word_ie1);
+        //           $('#wr1').text(response.word_rand1);
+        //           $('#wr2').text(response.word_rand2);
+        //           $('#wr3').text(response.word_rand3);
+        //           $('#wiki-modal').text(response.wiki);
   
-                }
-                //左の単語が固定されている場合、右の単語のみ更新(左の単語、wikiは更新しない)
-                else { 
-                  $('#wr1').text(response.word_rand1);
-                  $('#wr2').text(response.word_rand2);
-                  $('#wr3').text(response.word_rand3);
+        //         }
+        //         //左の単語が固定されている場合、右の単語のみ更新(左の単語、wikiは更新しない)
+        //         else { 
+        //           $('#wr1').text(response.word_rand1);
+        //           $('#wr2').text(response.word_rand2);
+        //           $('#wr3').text(response.word_rand3);
                   
-                }
+        //         }
                   
-              });
-          });
+        //       });
+        //   });
         // }}
         
   
