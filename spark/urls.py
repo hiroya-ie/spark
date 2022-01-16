@@ -27,4 +27,5 @@ urlpatterns = [
     path('ajax-wiki/', view4.ajax_wiki, name='ajax_wiki'),
     path('ajax-wiki/', views.ajax_wiki, name='ajax_wiki'),
     path('ajax-wiki/', view5.ajax_wiki, name='ajax_wiki'),
+    path('view6', view5.view6, name = 'view6'),
 ]
