@@ -115,7 +115,7 @@
       <div class="modalContents">
         <form action="#">
           <input type="text" name="tango-left" id="input-leftword"/>
-          <input type="button" value="入力!" id="input-complete" onclick="inputLeftWord();" >
+          <input type="button" value="入力！" id="input-complete" onclick="inputLeftWord();" >
         </form>
       </div>
         <div id="input-closeModal" class="closeModal">
@@ -167,7 +167,6 @@
           var value1 = text.innerHTML
           $('.save-tango').prepend('<p>' + wi1  +  " × "+ value1 + '</p>');
         }
-        //Keepに保存
         $(function () {
           $('#wr1').click(function(){
             wordSave('wr1');
@@ -188,17 +187,17 @@
         //左の単語を固定
         let left_tango = "not_fixed";
         function fixed_tango_L(idname){
-        obj = document.getElementById(idname);
-        if (left_tango=="not_fixed") {
-          obj.style.border='solid 1px';//ボタンが押しっぱであることを表現
-          left_tango = "fixed"; 
-          $('#btn2').text("左の固定を解除！(F)")
-        }
-        else  {
-          left_tango = "not_fixed";
-          obj.style.border='none';//ボタン押しっぱ表現を元に戻す
-          $('#btn2').text("左の単語を固定！(F)")
-        }
+            obj = document.getElementById(idname);
+            if (left_tango=="not_fixed") {
+                obj.style.border='solid 1px';//ボタンが押しっぱであることを表現
+                left_tango = "fixed"; 
+                $('#btn2').text("左の固定を解除！(F)")
+            }
+            else  {
+                left_tango = "not_fixed";
+                obj.style.border='none';//ボタン押しっぱ表現を元に戻す
+                $('#btn2').text("左の単語を固定！(F)")
+            }
         }
   
         //左の単語を入力するためのモーダルウィンドウ表示
@@ -217,7 +216,6 @@
   
   
         //左の単語を入力
-        
         const inputLeftWord = () => {
           const textbox = document.getElementById("input-leftword");
           const inputValue = textbox.value;
@@ -246,7 +244,7 @@
   
       
     
-        
+        //キーボード操作を受け付ける
         window.document.onkeyup = function (evt) {
           if (evt.key == "f" && inputing == "False" ) {
             fixed_tango_L("wi1");
@@ -290,101 +288,64 @@
   
   
         //ajaxのおまじない(今はあんまり考える必要なし！)
-          function getCookie(name) {
-              var cookieValue = null;
-              if (document.cookie && document.cookie !== '') {
-                  var cookies = document.cookie.split(';');
-                  for (var i = 0; i < cookies.length; i++) {
-                      var cookie = jQuery.trim(cookies[i]);
-                      // Does this cookie string begin with the name we want?
-                      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                          break;
-                      }
-                  }
-              }
-              return cookieValue;
-          }
-  
-          var csrftoken = getCookie('csrftoken');
-  
-          function csrfSafeMethod(method) {
-              // these HTTP methods do not require CSRF protection
-              return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-          }
-  
-          $.ajaxSetup({
-              beforeSend: function (xhr, settings) {
-                  if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                      xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                  }
-              }
-          });
-  
-          function ajaxWiki() { 
-              $.ajax({
-                  'url': '{% url "blog:ajax_wiki" %}',
-                  'type': 'POST',
-                  'data': {
-                  },
-                  'dataType': 'json'
-              })
-              .done(function(response){
-                //左の単語が固定されていない場合、全て更新
-                if (left_tango == "not_fixed") {
-                  $('#wi1').text(response.word_ie1);
-                  $('#wr1').text(response.word_rand1);
-                  $('#wr2').text(response.word_rand2);
-                  $('#wr3').text(response.word_rand3);
-                  $('#wiki-modal').text(response.wiki);
-  
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
                 }
-                //左の単語が固定されている場合、右の単語のみ更新(左の単語、wikiは更新しない)
-                else { 
-                  $('#wr1').text(response.word_rand1);
-                  $('#wr2').text(response.word_rand2);
-                  $('#wr3').text(response.word_rand3);
-                  
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
                 }
-                  
-              });
-  
+            }
+        });
+
+        function ajaxWiki() { 
+            $.ajax({
+                'url': '{% url "blog:ajax_wiki" %}',
+                'type': 'POST',
+                'data': {
+                },
+                'dataType': 'json'
+            })
+            .done(function(response){
+            //左の単語が固定されていない場合、全て更新
+            if (left_tango == "not_fixed") {
+                $('#wi1').text(response.word_ie1);
+                $('#wr1').text(response.word_rand1);
+                $('#wr2').text(response.word_rand2);
+                $('#wr3').text(response.word_rand3);
+                $('#wiki-modal').text(response.wiki);
+
+            }
+            //左の単語が固定されている場合、右の単語のみ更新(左の単語、wikiは更新しない)
+            else { 
+                $('#wr1').text(response.word_rand1);
+                $('#wr2').text(response.word_rand2);
+                $('#wr3').text(response.word_rand3);
+                
+            }        
+            });
           }
-          
-  
-          //ajaxの各種設定（考える必要あり！）
-        //   $('#ajax-wiki').on('submit', function(e) {
-        //       e.preventDefault();//デフォ設定のリロードを回避
-        //       $.ajax({
-        //           'url': '{% url "blog:ajax_wiki" %}',
-        //           'type': 'POST',
-        //           'data': {
-        //           },
-        //           'dataType': 'json'
-        //       })
-        //       .done(function(response){
-        //         //左の単語が固定されていない場合、全て更新
-        //         if (left_tango == "not_fixed") {
-        //           $('#wi1').text(response.word_ie1);
-        //           $('#wr1').text(response.word_rand1);
-        //           $('#wr2').text(response.word_rand2);
-        //           $('#wr3').text(response.word_rand3);
-        //           $('#wiki-modal').text(response.wiki);
-  
-        //         }
-        //         //左の単語が固定されている場合、右の単語のみ更新(左の単語、wikiは更新しない)
-        //         else { 
-        //           $('#wr1').text(response.word_rand1);
-        //           $('#wr2').text(response.word_rand2);
-        //           $('#wr3').text(response.word_rand3);
-                  
-        //         }
-                  
-        //       });
-        //   });
-        // }}
-        
-  
   
       </script>
     </body>
