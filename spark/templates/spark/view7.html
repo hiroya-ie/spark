@@ -15,7 +15,7 @@
 
     <!-- OP animation-->
     <div class="shutter">
-      <img src="{% static 'spark/images/spark.svg'%}" class="logo" alt="ロゴ">
+      <img src="{% static 'spark/images/spark_op.svg'%}" class="logo" alt="ロゴ">
     </div>
 
 
@@ -57,19 +57,19 @@
             <button class="btn bt-word" type="submit" id="wr3">{{ word_rand3 }}</button>
           </div>
         </div>
-        <div class="buttun">
-          <form id="ajax-number" class="bt">
+        <div class="button btn1">
+          <form id="ajax-wiki" class="bt">
               {% csrf_token %}
               <button type="button" class="btn bt-reload" onclick="ajaxWiki()" >もういっかい！(R)</button>
           </form>
         </div>
-        <div class="buttun">
+        <div class="button btn2">
           <button class="btn bt-reload" id="btn2" onclick="fixed_tango_L('wi1');" >左の単語を固定！(F)</button>
         </div>
-        <div class="buttun">
+        <div class="button btn3">
           <button class="btn bt-reload" id="input-openModal" >左の単語を入力！(I)</button>
         </div>
-        <div class="buttun">
+        <div class="button btn4">
           <button class="btn bt-reload" id="auto-reload-button" onclick="autoReload();" >スタート！(S)</button>
         </div>
       </div>
