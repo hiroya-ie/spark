@@ -43,7 +43,7 @@
       <div class="contents-item wordWrapper">
         <div class="words">
           <div class="wordLeft">
-            <button class="bt-left" id="wi1" onclick="search();">{{ word_ie1 }}</button>
+            <button class="bt-left" id="wi1" >{{ word_ie1 }}</button>
             
 
           </div>
@@ -286,7 +286,6 @@
   
       
       window.document.onkeyup = function (evt) {
-  
         if (evt.key == "i" && hint == "OFF" ) {
           inputing = "True";
           $('#input-modalArea').fadeIn();

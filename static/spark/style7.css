@@ -301,7 +301,7 @@ header .question:active {
   width: 70%;
   max-width: 500px;
   padding: 10px 30px;
-  /* background-color: #fff; */
+  background-color: #fff;
 }
 
 .closeModal {
