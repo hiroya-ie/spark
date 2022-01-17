@@ -271,8 +271,10 @@
         }
       };
       function inputChange(event){
-        intervalSecond = event.currentTarget.value;
-        console.log(intervalSecond);
+        if (event.currentTarget.value>999 && event.currentTarget.value<10001){
+            intervalSecond = event.currentTarget.value;
+            console.log(intervalSecond);
+        }
       }
 
       let sis = document.getElementById('select-interval-second');
