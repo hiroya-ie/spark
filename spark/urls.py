@@ -6,6 +6,7 @@ from . import view2
 from . import view3
 from . import view4
 from . import view5
+from . import view7
 
 app_name = 'blog'
 urlpatterns = [
@@ -28,4 +29,6 @@ urlpatterns = [
     path('ajax-wiki/', views.ajax_wiki, name='ajax_wiki'),
     path('ajax-wiki/', view5.ajax_wiki, name='ajax_wiki'),
     path('view6', view5.view6, name = 'view6'),
+    path('view7', view7.view7, name = 'view7'),
+    path('ajax-wiki/', view7.ajax_wiki, name='ajax_wiki'),
 ]

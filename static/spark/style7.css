@@ -1,0 +1,396 @@
+/* hiroya custom */
+
+
+/* General
+====================================================*/
+
+/* import web font "Noto Sans JP" */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;500;700&display=swap');
+
+/* set color variable */
+:root {
+  --col-bl: #3B3B40;
+  --col-bl-rgb: 59,59,64;
+  --col-wh: #F2F2F2;
+  --col-wh-rgb: 242,242,242;
+  --col-wh-light: #f8f8f8;
+  --col-wh-light-rgb: 248,248,248;
+}
+
+/*  --- responsive settings --- */
+html {
+  font-size: 75%;
+}
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+/* --- general settings --- */
+html {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--col-bl);
+  background-color: var(--col-wh);
+  
+}
+
+
+
+/* Header
+====================================================*/
+
+header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+
+header .title {
+  color: var(--col-bl);
+  margin-left: 20%;
+}
+
+header select {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  position:absolute;
+  width: 220px;
+  height: 40px;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: var(--col-bl);
+  border-radius: 5px;
+  margin: auto;
+  background: none;
+  border-color: var(--col-bl);
+}
+
+header select:hover {
+  border: solid 2px;
+}
+
+header .question {
+  color: var(--col-bl);
+  margin-right: 2%;
+  cursor: pointer;
+  font-size: 2rem;
+  border: none;
+  background: none;
+}
+
+header .question:hover {
+  opacity: 0.8;
+}
+
+header .question:active {
+  background-color: var(--col-bl);
+  top: 40px;
+}
+
+
+/* Contents
+====================================================*/
+
+/* ---  div controls  --- */
+
+.contents {
+  display: block;
+  text-align: center;
+  padding-top: 5%;
+  
+}
+
+@media screen and (min-width: 840px) {
+  .contents {
+    display: flex;
+  }
+}
+
+.wordWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+.words {
+  margin-top: 8%;
+  margin-bottom: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.keepWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  
+  
+}
+ 
+
+.save-tango {
+  /* height: 500px; */
+  height: 500px;
+  overflow:auto;
+  
+}
+
+.wordLeft {
+  display: flex;
+  width: 45%;
+  justify-content: flex-end;
+  vertical-align: middle;
+}
+
+.cross {
+  display: inline-block;
+  width: 5%;
+}
+
+.wordRight {
+  display: inline-block;
+  width: 50%;
+  vertical-align: middle;
+}
+
+.wordWrapper p {
+  font-size: 2rem;
+  padding: 5px 10px;
+}
+
+.buttun {
+  display: flex;
+  justify-content: center;
+}
+
+.keepTitle h2 {
+  margin: 1% 5%;
+  text-align: left;
+  border-bottom: solid 1px black;
+}
+
+
+
+/* ---  Bottun  --- */
+
+.btn {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 1.5rem;
+  margin: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  background: var(--col-wh);
+  color: var(--col-bl);
+  box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
+  transition: 0.1s ease;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  transform: translate(0 ,2px);
+  background: rgba(var(--col-wh-light-rgb), 0.9);
+  box-shadow: 0 6px 20px rgba(var(--col-bl-rgb), 33%);
+}
+
+.bt-left {
+  /*display: flex;
+  flex-wrap: wrap;
+  position: relative;*/ 
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 7px;
+  padding: 0.7rem 1.5rem;
+  margin: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  background: var(--col-wh);
+  color: var(--col-bl);
+  box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
+  transition: 0.1s ease; 
+}
+
+.bt-reload {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 7px;
+  padding: 1rem 2rem;
+  margin: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  background: #ADC8D9;
+  color: var(--col-bl);
+  box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
+  transition: 0.1s ease;
+}
+
+/* ---  Mordal  --- */
+
+.modalArea {
+  display: none;
+  position: fixed;
+  z-index: 10; /*サイトによってここの数値は調整 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modalBg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30,30,30,0.9);
+}
+
+.modalWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  width: 70%;
+  max-width: 500px;
+  padding: 10px 30px;
+  /* background-color: #fff; */
+}
+
+.closeModal {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+
+
+/* --- Hint --- */
+.hint_img {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+
+/* --- OP animation --- */
+.shutter{
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin: auto;
+  background-color:#fff;
+  z-index:99;
+  -webkit-animation: byeShutter 2.4s forwards;
+  animation: byeShutter 2.4s forwards;
+}
+.logo {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-animation: logo 0.8s forwards;
+  animation: logo 0.8s forwards;
+  animation-delay: 0.2s;
+
+}
+@keyframes byeShutter {
+70% {
+  opacity: 1;
+}
+100% {
+  display: none;
+  opacity: 0;
+  z-index: -1;
+}
+}
+@keyframes logo {
+0% {
+  opacity: 1;
+}
+50% {
+  transform: rotate(0deg);     
+}
+  100% {
+  transform: scale(0.8);
+  }
+}
+
+
+/* ---  input left word --- */
+#input-leftword {
+	font: 35px/54px sans-serif;
+	box-sizing: border-box;
+	width: 60%;
+
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+#input-leftword:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
+}
+#input-complete {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 27pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #ff0000;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 1px 1px 3px #666666;  /* 影の設定 */
+  border        : 2px solid #ff0000;    /* 枠の指定 */
+}
+#input-complete:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #ff0000;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+
+

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark</title>
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'spark/style7.css' %}">
+    <!--JavaScript-->
+    <script src="https://kit.fontawesome.com/5d7787ac73.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <!-- OP animation-->
+    <div class="shutter">
+      <img src="{% static 'spark/images/spark.svg'%}" class="logo" alt="ロゴ">
+    </div>
+
+
+    <!-- header -->
+    <header>
+      <h1><a href="#" class=title><i class="far fa-lightbulb">Spark</i></a></h1>
+      <form class="viewSelect" method="post">
+        <div>
+          <select name="ViewSelect" id="select-interval-second" >
+          <option value="3000">自動表示の間隔を選択</option>
+          <option value="1000">1秒</option>
+          <option value="3000">3秒</option>
+          <option value="5000">5秒</option>
+          <option value="10000">10秒</option>
+          </select>
+        </div>
+      </form>
+      <button class="question" id="hint-openModal"><i class="far fa-question-circle"></i></button>
+    </header>
+
+    <!-- contents -->
+
+    <!-- wordList -->
+    <div class="contents">
+      <div class="contents-item wordWrapper">
+        <div class="words">
+          <div class="wordLeft">
+            <button class="bt-left" id="wi1" onclick="search();">{{ word_ie1 }}</button>
+            
+
+          </div>
+          <div class="cross">
+            <p>×</p>
+          </div>
+          <div class="wordRight">
+            {% csrf_token %}   
+            <button class="btn bt-word" type="submit" id="wr1">{{ word_rand1 }}</button>
+            <button class="btn bt-word" type="submit" id="wr2">{{ word_rand2 }}</button>
+            <button class="btn bt-word" type="submit" id="wr3">{{ word_rand3 }}</button>
+          </div>
+        </div>
+        <div class="buttun">
+          <form id="ajax-number" class="bt">
+              {% csrf_token %}
+              <button type="button" class="btn bt-reload" onclick="ajaxWiki()" >もういっかい！(R)</button>
+          </form>
+        </div>
+        <div class="buttun">
+          <button class="btn bt-reload" id="btn2" onclick="fixed_tango_L('wi1');" >左の単語を固定！(F)</button>
+        </div>
+        <div class="buttun">
+          <button class="btn bt-reload" id="input-openModal" >左の単語を入力！(I)</button>
+        </div>
+        <div class="buttun">
+          <button class="btn bt-reload" id="auto-reload-button" onclick="autoReload();" >スタート！(S)</button>
+        </div>
+      </div>
+
+      <div class="contents-item keepWrapper">
+        <div class="keepTitle">
+          <h2>Keep</h2>
+          <div class="save-tango">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- wikiModal -->
+    <section id="wiki-modalArea" class="modalArea">
+      <div id="wiki-modalBg" class="modalBg"></div>
+      <div class="modalWrapper">
+        <div class="modalContents" id="wiki-modal" >
+          <p>{{ wiki }}</p>
+        </div>
+        <div id="wiki-closeModal" class="closeModal">
+          ×
+        </div>
+      </div>
+    </section>
+
+
+    <!-- hintModal -->
+    <section id="hint-modalArea" class="modalArea">
+      <div id="hint-modalBg" class="modalBg" ></div>
+      <div class="modalWrapper" >
+      <div class="modalContents">
+        <img class="hint_img" src="{% static 'spark/images/hint-1.svg'%}">
+      </div>
+        <div id="hint-closeModal" class="closeModal">
+        ×
+        </div>
+      </div>
+      </section>
+
+      <!-- inputModal -->
+    <section id="input-modalArea" class="modalArea">
+      <div id="input-modalBg" class="modalBg"></div>
+      <div class="modalWrapper">
+      <div class="modalContents">
+        <form action="#">
+          <input type="text" name="tango-left" id="input-leftword"/>
+          <input type="button" value="入力" id="input-complete" onclick="inputLeftWord();" >
+        </form>
+      </div>
+        <div id="input-closeModal" class="closeModal">
+        ×
+        </div>
+      </div>
+      </section>
+
+     
+
+
+
+      
+
+
+    <!--フォーム-->
+    <!-- <div class="form">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKsVhKNyarTrIrXJDwqlTF5dXa3HdOQ1ckzcK6v2sV96-TZg/viewform?embedded=true" width="640" height="645" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+    </div> -->
+  
+
+
+    
+    <!-- JavaScript -->
+    <script>
+      //wikiを表示
+      $(function () {
+        $('#wi1').click(function(){
+          $('#wiki-modalArea').fadeIn();
+        });
+        $('#wiki-closeModal , #wiki-modalBg').click(function(){
+          $('#wiki-modalArea').fadeOut();
+        });
+      });
+
+      //ヒントを表示
+      $(function () {
+        $('#hint-openModal').click(function(){
+          $('#hint-modalArea').fadeIn();
+        });
+        $('#hint-closeModal , #hint-modalBg').click(function(){
+          $('#hint-modalArea').fadeOut();
+        });
+        
+      });
+
+
+      //単語の組み合わせをKeepに保存
+      function wordSave(id){
+        const text = document.getElementById(id);
+        const wi1 = $("#wi1").text(); 
+        const value1 = text.innerHTML
+        $('.save-tango').prepend('<p>' + wi1  +  " × "+ value1 + '</p>');
+      }
+      //Keepに保存
+      $(function () {
+        $('#wr1').click(function(){
+          wordSave('wr1');
+        });
+        $('#wr2').click(function(){
+          wordSave('wr2');
+        });
+        $('#wr3').click(function(){
+          wordSave('wr3');
+        });
+      });
+      
+
+
+      
+      let inputing = "False";
+      let hint = "OFF";
+      let intervalSecond = 3000;
+      //左の単語を固定
+      let leftWord = "not_fixed";
+      function fixed_tango_L(idname){
+        const obj = document.getElementById(idname);
+        if (leftWord=="not_fixed") {
+          obj.style.border='solid 1px';//ボタンが押しっぱであることを表現
+          leftWord = "fixed"; 
+          $('#btn2').text("左の固定を解除！(F)")
+        }
+        else  {
+          leftWord = "not_fixed";
+          obj.style.border='none';//ボタン押しっぱ表現を元に戻す
+          $('#btn2').text("左の単語を固定！(F)")
+        }
+      }
+
+      //左の単語を入力するためのモーダルウィンドウ表示
+      $(function () {
+        $('#input-openModal').click(function(){
+          $('#input-modalArea').fadeIn();
+          document.getElementById("input-leftword").focus()
+          inputing = "True";
+        });
+        $('#input-closeModal , #input-modalBg, #input-complete').click(function(){
+          $('#input-modalArea').fadeOut();
+          inputing = "False";
+        });
+      });
+
+
+
+      //左の単語を入力
+      const inputLeftWord = () => {
+        const textbox = document.getElementById("input-leftword");
+        const inputValue = textbox.value;
+        const output = inputValue;
+        const line1 = '<a href="https://www.google.com/search?q=';
+        const line2 = '"target="_blank">「'
+        const line3 = '」をGoogleで検索</a>'
+        if (inputValue != "") {
+          document.getElementById("wi1").innerHTML = output;
+          line = line1+output+line2+output+line3
+          document.getElementById("wiki-modal").innerHTML = line;
+        }
+        $('#input-modalArea').fadeOut();
+        inputing = "False";
+      }
+      //Enterキーでリロードしてしまうのを防ぎ、Enter押されたら入力完了にする
+      document.getElementById("input-leftword").onkeypress = (e) => {
+        const key = e.keyCode || e.charCode || 0;
+        if (key == 13) {
+          e.preventDefault();
+          inputLeftWord();
+          
+        }
+      }
+
+      // setIntervalメソッドの戻り値をセットする変数
+      let intervalId;
+      let auto = "False";
+
+      //自動もういっかい!
+      function autoReload(){
+        if (auto == "False"){
+          auto = "True";
+          intervalId = setInterval(function() {
+            ajaxWiki()
+          }, intervalSecond);
+          $('#auto-reload-button').text("ストップ！(S)")
+          console.log(auto);
+        }
+        else if (auto == "True"){
+          auto = "False";
+          clearInterval(intervalId);
+          $('#auto-reload-button').text("スタート！(S)")
+          console.log(auto);
+        }
+      };
+      function inputChange(event){
+        intervalSecond = event.currentTarget.value;
+        console.log(intervalSecond);
+      }
+
+      let sis = document.getElementById('select-interval-second');
+      sis.addEventListener('change', inputChange);
+
+
+
+    
+  
+      
+      window.document.onkeyup = function (evt) {
+  
+        if (evt.key == "i" && hint == "OFF" ) {
+          inputing = "True";
+          $('#input-modalArea').fadeIn();
+          document.getElementById("input-leftword").focus()   
+        }
+        else if (evt.key == "h" && inputing == "False" && hint == "OFF") {
+          $('#hint-modalArea').fadeIn();
+          hint="ON"
+        }
+        else if (evt.key == "h" && inputing == "False" && hint == "ON") {
+          $('#hint-modalArea').fadeOut();
+          hint="OFF"
+        }
+        else if (evt.key == "f" && inputing == "False" && hint == "OFF" ) {
+          fixed_tango_L("wi1");
+        }
+        else if (evt.key == "r" && inputing == "False" && hint == "OFF") {
+          ajaxWiki();
+        }
+        else if (evt.key == "j" && inputing == "False" && hint == "OFF") {
+          wordSave('wr1');
+        }
+        else if (evt.key == "k" && inputing == "False" && hint == "OFF") {
+          wordSave('wr2');
+        }
+        else if (evt.key == "l" && inputing == "False" && hint == "OFF") {
+          wordSave('wr3');
+        }
+        else if (evt.key == "s" && inputing == "False" && hint == "OFF") {
+          autoReload();
+        }
+      }
+      
+
+
+      
+
+    
+
+
+      
+
+
+
+      //ajaxのおまじない(今はあんまり考える必要なし！)
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        function ajaxWiki() { 
+            // e.preventDefault();//デフォ設定のリロードを回避
+            $.ajax({
+                'url': '{% url "blog:ajax_number" %}',
+                'type': 'POST',
+                'data': {
+                },
+                'dataType': 'json'
+            })
+            .done(function(response){
+              //左の単語が固定されていない場合、全て更新
+              if (leftWord == "not_fixed") {
+                $('#wi1').text(response.word_ie1);
+                $('#wr1').text(response.word_rand1);
+                $('#wr2').text(response.word_rand2);
+                $('#wr3').text(response.word_rand3);
+                $('#wiki-modal').text(response.wiki);
+
+              }
+              //左の単語が固定されている場合、右の単語のみ更新(左の単語、wikiは更新しない)
+              else { 
+                $('#wr1').text(response.word_rand1);
+                $('#wr2').text(response.word_rand2);
+                $('#wr3').text(response.word_rand3);
+                
+              }
+                
+            });
+
+        }
+        
+      
+
+
+    </script>
+  </body>
+</html>
