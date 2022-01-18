@@ -31,4 +31,5 @@ urlpatterns = [
     path('view6', view5.view6, name = 'view6'),
     path('view7', view7.view7, name = 'view7'),
     path('ajax-wiki/', view7.ajax_wiki, name='ajax_wiki'),
+    path('view8', view7.view8, name = 'view8'),
 ]

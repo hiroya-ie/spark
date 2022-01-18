@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spark</title>
     <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'spark/style7.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'spark/style8.css' %}">
     <!--JavaScript-->
     <script src="https://kit.fontawesome.com/5d7787ac73.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,13 +15,13 @@
 
     <!-- OP animation-->
     <div class="shutter">
-      <img src="{% static 'spark/images/spark_op.svg'%}" class="logo" alt="ロゴ">
+      <img src="{% static 'spark/images/spark.svg'%}" class="logo" alt="ロゴ">
     </div>
 
 
     <!-- header -->
     <header>
-      <h1><a href="#" class=title><i class="far fa-lightbulb">Spark</i></a></h1>
+      <h1><a href="#" class="title"><em class="far fa-lightbulb">Spark</em></a></h1>
       <form class="viewSelect" method="post">
         <div>
           <select name="ViewSelect" id="select-interval-second" >
@@ -33,7 +33,7 @@
           </select>
         </div>
       </form>
-      <button class="question" id="hint-openModal"><i class="far fa-question-circle"></i></button>
+      <button class="question" id="hint-openModal"><em class="far fa-question-circle"></em></button>
     </header>
 
     <!-- contents -->
@@ -60,19 +60,20 @@
         <div class="button btn1">
           <form id="ajax-wiki" class="bt">
               {% csrf_token %}
-              <button type="button" class="btn bt-reload" onclick="ajaxWiki()" >もういっかい！(R)</button>
+              <button type="button" class="btn bt-reload" onclick="ajaxWiki()" >もういっかい(R)</button>
           </form>
         </div>
         <div class="button btn2">
-          <button class="btn bt-reload" id="btn2" onclick="fixed_tango_L('wi1');" >左の単語を固定！(F)</button>
+          <button class="btn bt-reload" id="btn2" onclick="fixed_tango_L('wi1');" >左の単語を固定(F)</button>
         </div>
         <div class="button btn3">
-          <button class="btn bt-reload" id="input-openModal" >左の単語を入力！(I)</button>
+          <button class="btn bt-reload" id="input-openModal" >左の単語を入力(I)</button>
         </div>
         <div class="button btn4">
-          <button class="btn bt-reload" id="auto-reload-button" onclick="autoReload();" >スタート！(S)</button>
+          <button class="btn bt-reload" id="auto-reload-button" onclick="autoReload();" >連続表示スタート(S)</button>
         </div>
       </div>
+
 
       <div class="contents-item keepWrapper">
         <div class="keepTitle">
@@ -82,6 +83,7 @@
         </div>
       </div>
     </div>
+
 
 
     <!-- wikiModal -->
@@ -103,7 +105,7 @@
       <div id="hint-modalBg" class="modalBg" ></div>
       <div class="modalWrapper" >
       <div class="modalContents">
-        <img class="hint_img" src="{% static 'spark/images/hint-1.svg'%}">
+        <img class="hint_img" src="{% static 'spark/images/hint-1.svg'%}" alt>
       </div>
         <div id="hint-closeModal" class="closeModal">
         ×
@@ -126,6 +128,8 @@
         </div>
       </div>
       </section>
+
+        
 
      
 
@@ -165,13 +169,14 @@
         
       });
 
+////////////////////////////////////////////////////////////////////////////
 
       //単語の組み合わせをKeepに保存
       function wordSave(id){
         const text = document.getElementById(id);
         const wi1 = $("#wi1").text(); 
         const value1 = text.innerHTML
-        $('.save-tango').prepend('<p>' + wi1  +  " × "+ value1 + '</p>');
+        $('.save-tango').prepend('<div class="saved-wordSet"> <span class="wordSet">' + wi1  +  " × "+ value1 + '</span> <button class="gc" id="goodCount" onclick="goodCount();" value>0</button> </div>');
       }
       //Keepに保存
       $(function () {
@@ -199,12 +204,12 @@
         if (leftWord=="not_fixed") {
           obj.style.border='solid 1px';//ボタンが押しっぱであることを表現
           leftWord = "fixed"; 
-          $('#btn2').text("左の固定を解除！(F)")
+          $('#btn2').text("左の固定を解除(F)")
         }
         else  {
           leftWord = "not_fixed";
           obj.style.border='none';//ボタン押しっぱ表現を元に戻す
-          $('#btn2').text("左の単語を固定！(F)")
+          $('#btn2').text("左の単語を固定(F)")
         }
       }
 
@@ -253,22 +258,32 @@
       let intervalId;
       let auto = "False";
 
-      //自動もういっかい!
+    
+
+      
       function autoReload(){
+        // 0.5秒ごとに実行
         if (auto == "False"){
           auto = "True";
           intervalId = setInterval(function() {
             ajaxWiki()
           }, intervalSecond);
-          $('#auto-reload-button').text("ストップ！(S)")
+          $('#auto-reload-button').text("連続表示ストップ(S)")
           console.log(auto);
         }
         else if (auto == "True"){
           auto = "False";
           clearInterval(intervalId);
-          $('#auto-reload-button').text("スタート！(S)")
+          $('#auto-reload-button').text("連続表示スタート(S)")
           console.log(auto);
         }
+      };
+      function goodCount(){
+        var elm = event.target;
+        var count = elm.innerHTML; 
+        count = Number(count)+1;
+        console.log(count);
+        elm.innerHTML=count;
       };
       function inputChange(event){
         if (event.currentTarget.value>999 && event.currentTarget.value<10001){
@@ -286,6 +301,7 @@
   
       
       window.document.onkeyup = function (evt) {
+  
         if (evt.key == "i" && hint == "OFF" ) {
           inputing = "True";
           $('#input-modalArea').fadeIn();
@@ -393,6 +409,7 @@
 
         }
         
+
       
 
 
