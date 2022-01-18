@@ -167,6 +167,11 @@ header .question:active {
   border-bottom: solid 1px black;
 }
 
+.save-tango {
+    height: 500px;
+    overflow:auto;
+  }
+
 
 /* ---  Bottun  --- */
 
@@ -279,6 +284,13 @@ header .question:active {
   cursor: pointer;
 }
 
+
+
+/* --- Hint --- */
+.hint_img {
+    width: 100%;
+    height: 100%;
+  }
 
 
 

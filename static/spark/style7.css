@@ -37,6 +37,11 @@ html {
   font-family: 'Noto Sans JP', sans-serif;
   color: var(--col-bl);
   background-color: var(--col-wh);
+  
+}
+div {
+  /* border: solid 8px red;
+  box-sizing: border-box; */
 }
 
 
@@ -60,7 +65,7 @@ header select {
   font-size: 1rem;
   font-weight: 500;
   position:absolute;
-  width: 120px;
+  width: 220px;
   height: 40px;
   text-align: center;
   top: 0;
@@ -106,6 +111,7 @@ header .question:active {
   display: block;
   text-align: center;
   padding-top: 5%;
+  
 }
 
 @media screen and (min-width: 840px) {
@@ -131,6 +137,16 @@ header .question:active {
   margin-left: auto;
   margin-right: auto;
   width: 70%;
+  
+  
+}
+ 
+
+.save-tango {
+  /* height: 500px; */
+  height: 500px;
+  overflow:auto;
+  
 }
 
 .wordLeft {
@@ -156,10 +172,22 @@ header .question:active {
   padding: 5px 10px;
 }
 
-.buttun {
+
+
+.button {
   display: flex;
   justify-content: center;
 }
+
+.btn1, .btn2, .btn3, .btn4 {
+  /* border-color: yellow; */
+  float: left;
+  width: 50%;
+  justify-content: center;
+}
+
+
+
 
 .keepTitle h2 {
   margin: 1% 5%;
@@ -168,7 +196,8 @@ header .question:active {
 }
 
 
-/* ---  Bottun  --- */
+
+/* ---  Button  --- */
 
 .btn {
   display: flex;
@@ -233,7 +262,7 @@ header .question:active {
   padding: 1rem 2rem;
   margin: 2rem;
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 0.1rem;
@@ -241,6 +270,9 @@ header .question:active {
   color: var(--col-bl);
   box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
   transition: 0.1s ease;
+  
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /* ---  Mordal  --- */
@@ -277,6 +309,14 @@ header .question:active {
   top: 0.5rem;
   right: 1rem;
   cursor: pointer;
+}
+
+
+
+/* --- Hint --- */
+.hint_img {
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -325,7 +365,6 @@ header .question:active {
 0% {
   opacity: 1;
 }
-  
 50% {
   transform: rotate(0deg);     
 }
@@ -333,3 +372,5 @@ header .question:active {
   transform: scale(0.8);
   }
 }
+
+
