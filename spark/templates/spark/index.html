@@ -140,9 +140,11 @@
       $(function () {
         $('#wi1').click(function(){
           $('#wiki-modalArea').fadeIn();
+          wikiModal = "ON"
         });
         $('#wiki-closeModal , #wiki-modalBg').click(function(){
           $('#wiki-modalArea').fadeOut();
+          wikiModal = "OFF"
         });
       });
 
@@ -150,9 +152,11 @@
       $(function () {
         $('#hint-openModal').click(function(){
           $('#hint-modalArea').fadeIn();
+          hint = "ON"
         });
         $('#hint-closeModal , #hint-modalBg').click(function(){
           $('#hint-modalArea').fadeOut();
+          hint = "OFF"
         });
         
       });
@@ -184,6 +188,7 @@
       
       let inputing = "False";
       let hint = "OFF";
+      let wikiModal = "OFF"
       let intervalSecond = 3000;
       //左の単語を固定
       let leftWord = "not_fixed";
@@ -290,35 +295,35 @@
       
       window.document.onkeyup = function (evt) {
   
-        if (evt.key == "i" && hint == "OFF" ) {
+        if (evt.key == "i" && hint == "OFF" && wikiModal == "OFF") {
           inputing = "True";
           $('#input-modalArea').fadeIn();
           document.getElementById("input-leftword").focus()   
         }
-        else if (evt.key == "h" && inputing == "False" && hint == "OFF") {
+        else if (evt.key == "h" && inputing == "False" && hint == "OFF" && wikiModal == "OFF") {
           $('#hint-modalArea').fadeIn();
           hint="ON"
         }
-        else if (evt.key == "h" && inputing == "False" && hint == "ON") {
+        else if (evt.key == "h" && inputing == "False" && hint == "ON" && wikiModal == "OFF") {
           $('#hint-modalArea').fadeOut();
           hint="OFF"
         }
-        else if (evt.key == "f" && inputing == "False" && hint == "OFF" ) {
+        else if (evt.key == "f" && inputing == "False" && hint == "OFF" && wikiModal == "OFF") {
           fixed_tango_L("wi1");
         }
-        else if (evt.key == "r" && inputing == "False" && hint == "OFF") {
+        else if (evt.key == "r" && inputing == "False" && hint == "OFF" && wikiModal == "OFF") {
           ajaxWiki();
         }
-        else if (evt.key == "j" && inputing == "False" && hint == "OFF") {
+        else if (evt.key == "j" && inputing == "False" && hint == "OFF" && wikiModal == "OFF") {
           wordSave('wr1');
         }
-        else if (evt.key == "k" && inputing == "False" && hint == "OFF") {
+        else if (evt.key == "k" && inputing == "False" && hint == "OFF" && wikiModal == "OFF") {
           wordSave('wr2');
         }
-        else if (evt.key == "l" && inputing == "False" && hint == "OFF") {
+        else if (evt.key == "l" && inputing == "False" && hint == "OFF" && wikiModal == "OFF") {
           wordSave('wr3');
         }
-        else if (evt.key == "s" && inputing == "False" && hint == "OFF") {
+        else if (evt.key == "s" && inputing == "False" && hint == "OFF" && wikiModal == "OFF") {
           autoReload();
         }
       }
