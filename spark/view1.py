@@ -5,7 +5,7 @@ from django.http import JsonResponse
 
 
 def view1(request):
-    ie_wordlist, trend_rensou_wordlist = randomWords.randomA()
+    ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomB()
 
     content = {
         'word_ie1': ie_wordlist[0],
@@ -20,13 +20,15 @@ def view1(request):
         'word_rand7': trend_rensou_wordlist[6],
         'word_rand8': trend_rensou_wordlist[7],
         'word_rand9': trend_rensou_wordlist[8],
+        'wiki':wiki
 
         }
     return render(request, 'spark/view1.html', content)
 
-def ajax_number(request):
-    ie_wordlist, trend_rensou_wordlist = randomWords.randomA()
 
+def ajax_wiki(request):
+    ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomB()
+    
     content = {
         'word_ie1': ie_wordlist[0],
         'word_ie2': ie_wordlist[1],
@@ -40,5 +42,7 @@ def ajax_number(request):
         'word_rand7': trend_rensou_wordlist[6],
         'word_rand8': trend_rensou_wordlist[7],
         'word_rand9': trend_rensou_wordlist[8],
+        'wiki': wiki
+    
         }
     return JsonResponse(content)

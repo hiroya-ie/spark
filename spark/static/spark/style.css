@@ -1,207 +1,668 @@
-html {
-  font-size: 75%;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+/* hiroya custom */
+
+
+/* General
+====================================================*/
+
+/* import web font "Noto Sans JP" */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;500;700&display=swap');
+
+/* set color variable */
+:root {
+  --col-bl: #3B3B40;
+  --col-bl-rgb: 59,59,64;
+  --col-wh: #F2F2F2;
+  --col-wh-rgb: 242,242,242;
+  --col-wh-light: #f8f8f8;
+  --col-wh-light-rgb: 248,248,248;
 }
 
-@media screen and (min-width: 368px) {
+/*  --- responsive settings --- */
+html {
+  font-size: 75%;
+}
+@media screen and (min-width: 768px) {
   html {
-    font-size: 50%;
+    font-size: 87.5%;
   }
 }
 @media screen and (min-width: 1024px) {
   html {
-    font-size: 90%;
+    font-size: 100%;
   }
 }
 
-.a1 {
-  padding: 5px;
+/* --- general settings --- */
+html {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--col-bl);
+  background-color: var(--col-wh);
+}
+
+
+
+/* Header
+====================================================*/
+
+header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+
+header .title {
+  color: var(--col-bl);
+  margin-left: 20%;
+}
+
+header select {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  position:absolute;
+  width: 120px;
+  height: 40px;
   text-align: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: var(--col-bl);
+  border-radius: 5px;
+  margin: auto;
+  background: none;
+  border-color: var(--col-bl);
+}
+
+header select:hover {
+  border: solid 2px;
+}
+
+header .question {
+  color: var(--col-bl);
+  margin-right: 2%;
+  cursor: pointer;
   font-size: 2rem;
-  clear: left;
+  border: none;
+  background: none;
 }
 
-.btn-reload {
-  margin: 100px;
+header .question:hover {
+  opacity: 0.8;
+}
+
+header .question:active {
+  background-color: var(--col-bl);
+  top: 40px;
+}
+
+
+/* Contents
+====================================================*/
+
+/* ---  div controls  --- */
+
+.contents {
+  display: block;
   text-align: center;
-  font-size: 2rem;
-  clear: left;
-  
+  padding-top: 5%;
 }
-
-
-@media screen and (min-width: 481px) {
-  .word {
-    font-weight: bold;
-    font-size: 2rem;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-    display: flex; 
-    flex-wrap: wrap;  
-   
-
-  }
-
-  .word_box1 {
-    float: left;
-    width: 100%;
-
-  }
-  .word_box2 {
-    float: left;
-    width: 50%;
-
-  }
-  .word_box3 {
-    float: left;
-    width: 33%;
-
-
-  }
-  .word_Left {
-    text-align: right;
-    float: left;
-    width: 45%;
-    font-size: 2rem;
-    
-    
-  }
-  .word_x {
-    text-align: center;
-    float: left;
-    width: 10%;
-  }
-
-  .word_Right {
-    text-align: left;
-    float: left;
-    width: 45%;
-  }
-
-}
-.bt {
-  text-align: center;
-  width: 100%;
-  margin-top: 20px;
-}
-
-h2 {
-  width: 100%;
-  float: left;
-  margin: 0;
-  margin-top: 60px;
-}
-
-.save-tango {
-  float: left;
-}
-
-
 
 @media screen and (min-width: 840px) {
-  .word_set {
-    width: 33%;
+  .contents {
+    display: flex;
   }
-  /* .word_L {
-    width: 45%;
-  }
-  .word_x {
-    width: 10%;
-  }
-  .word_R {
-    width: 45%;
-  } */
-  
 }
 
-/*まずはお決まりのボックスサイズ算出をborer-boxに */
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: inherit;
-  box-sizing: inherit;
+.wordWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+.words {
+  margin-top: 8%;
+  margin-bottom: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.keepWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
 
-.btn,
-a.btn,
-button.btn {
-  
-  font-size: 1.7rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
+.wordLeft {
+  display: flex;
+  width: 45%;
+  justify-content: flex-end;
+  vertical-align: middle;
+}
+
+.cross {
   display: inline-block;
-  padding: 1rem 4rem;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  text-align: center;
+  width: 5%;
+}
+
+.wordRight {
+  display: inline-block;
+  width: 50%;
   vertical-align: middle;
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  color: #212529;
-  border-radius: 0.5rem;
-  
-  
+}
+
+.wordWrapper p {
+  font-size: 2rem;
+  padding: 5px 10px;
+}
+
+.buttun {
+  display: flex;
+  justify-content: center;
+}
+
+.keepTitle h2 {
+  margin: 1% 5%;
+  text-align: left;
+  border-bottom: solid 1px black;
 }
 
 
-.btn--gray,
-a.btn--gray {
-  display: flex; 
-  flex-wrap: wrap;  
+/* ---  Bottun  --- */
+
+.btn {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 1.5rem;
+  margin: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
   font-size: 1.7rem;
   font-weight: 700;
   line-height: 1.5;
-  position: relative;
-  padding: 1rem 2rem;
+  letter-spacing: 0.1rem;
+  background: var(--col-wh);
+  color: var(--col-bl);
+  box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
+  transition: 0.1s ease;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  transform: translate(0 ,2px);
+  background: rgba(var(--col-wh-light-rgb), 0.9);
+  box-shadow: 0 6px 20px rgba(var(--col-bl-rgb), 33%);
+}
+
+.bt-left {
+  /*display: flex;
+  flex-wrap: wrap;
+  position: relative;*/ 
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  outline: 0;
+  border: none;
+  border-radius: 7px;
+  padding: 0.7rem 1.5rem;
+  margin: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  background: var(--col-wh);
+  color: var(--col-bl);
+  box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
+  transition: 0.1s ease; 
+}
+
+.bt-reload {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 7px;
+  padding: 1rem 2rem;
+  margin: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  background: #ADC8D9;
+  color: var(--col-bl);
+  box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
+  transition: 0.1s ease;
+}
+
+/* ---  Mordal  --- */
+
+.modalArea, .modalArea2 {
+  display: none;
+  position: fixed;
+  z-index: 10; /*サイトによってここの数値は調整 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modalBg, .modalBg2 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30,30,30,0.9);
+}
+
+.modalWrapper, .modalWrapper2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  width: 70%;
+  max-width: 500px;
+  padding: 10px 30px;
+  background-color: #fff;
+}
+
+.hint_img {
+  width: 500px;
+  height: 600px;
+}
+
+.closeModal {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+
+/* --- OP animation --- */
+.shutter{
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin: auto;
+  background-color:#fff;
+  z-index:99;
+  -webkit-animation: byeShutter 2.4s forwards;
+  animation: byeShutter 2.4s forwards;
+}
+.logo {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-animation: logo 0.8s forwards;
+  animation: logo 0.8s forwards;
+  animation-delay: 0.2s;
+
+}
+@keyframes byeShutter {
+70% {
+  opacity: 1;
+}
+100% {
+  display: none;
+  opacity: 0;
+  z-index: -1;
+}
+}
+@keyframes logo {
+0% {
+  opacity: 1;
+}
+  
+50% {
+  transform: rotate(0deg);     
+}
+  100% {
+  transform: scale(0.8);
+  }
+}/* hiroya custom */
+
+
+/* General
+====================================================*/
+
+/* import web font "Noto Sans JP" */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;500;700&display=swap');
+
+/* set color variable */
+:root {
+  --col-bl: #3B3B40;
+  --col-bl-rgb: 59,59,64;
+  --col-wh: #F2F2F2;
+  --col-wh-rgb: 242,242,242;
+  --col-wh-light: #f8f8f8;
+  --col-wh-light-rgb: 248,248,248;
+}
+
+/*  --- responsive settings --- */
+html {
+  font-size: 75%;
+}
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+/* --- general settings --- */
+html {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--col-bl);
+  background-color: var(--col-wh);
+}
+
+
+
+/* Header
+====================================================*/
+
+header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+
+header .title {
+  color: var(--col-bl);
+  margin-left: 20%;
+}
+
+header select {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  position:absolute;
+  width: 120px;
+  height: 40px;
   text-align: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: var(--col-bl);
+  border-radius: 5px;
+  margin: auto;
+  background: none;
+  border-color: var(--col-bl);
+}
+
+header select:hover {
+  border: solid 2px;
+}
+
+header .question {
+  color: var(--col-bl);
+  margin-right: 2%;
+  cursor: pointer;
+  font-size: 2rem;
+  border: none;
+  background: none;
+}
+
+header .question:hover {
+  opacity: 0.8;
+}
+
+header .question:active {
+  background-color: var(--col-bl);
+  top: 40px;
+}
+
+
+/* Contents
+====================================================*/
+
+/* ---  div controls  --- */
+
+.contents {
+  display: block;
+  text-align: center;
+  padding-top: 5%;
+}
+
+@media screen and (min-width: 840px) {
+  .contents {
+    display: flex;
+  }
+}
+
+.wordWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+.words {
+  margin-top: 8%;
+  margin-bottom: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.keepWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.wordLeft {
+  display: flex;
+  width: 45%;
+  justify-content: flex-end;
   vertical-align: middle;
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  color: #212529;
-  border-radius: 0.5rem;
-  margin: 2%;
 }
 
-.btn--orange,
-a.btn--orange {
-  color: #fff;
-  background-color: #eb6100;
-}
-.btn--orange:hover,
-a.btn--orange:hover {
-  color: #fff;
-  background: #f56500;
+.cross {
+  display: inline-block;
+  width: 5%;
 }
 
-.font-main {
-  padding: 2px;
+.wordRight {
+  display: inline-block;
+  width: 50%;
+  vertical-align: middle;
 }
 
-#btn1 {
-  margin-bottom: 4px;
+.wordWrapper p {
+  font-size: 2rem;
+  padding: 5px 10px;
 }
 
-.form {
-  text-align: center;
+.buttun {
+  display: flex;
+  justify-content: center;
 }
 
-.link {
-  text-align: center;
+.keepTitle h2 {
+  margin: 1% 5%;
+  text-align: left;
+  border-bottom: solid 1px black;
+}
+
+
+/* ---  Bottun  --- */
+
+.btn {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 1.5rem;
+  margin: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  background: var(--col-wh);
+  color: var(--col-bl);
+  box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
+  transition: 0.1s ease;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  transform: translate(0 ,2px);
+  background: rgba(var(--col-wh-light-rgb), 0.9);
+  box-shadow: 0 6px 20px rgba(var(--col-bl-rgb), 33%);
+}
+
+.bt-left {
+  /*display: flex;
+  flex-wrap: wrap;
+  position: relative;*/ 
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 7px;
+  padding: 0.7rem 1.5rem;
+  margin: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  background: var(--col-wh);
+  color: var(--col-bl);
+  box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
+  transition: 0.1s ease; 
+}
+
+.bt-reload {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 7px;
+  padding: 1rem 2rem;
+  margin: 2rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  background: #ADC8D9;
+  color: var(--col-bl);
+  box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
+  transition: 0.1s ease;
+}
+
+/* ---  Mordal  --- */
+
+.modalArea, .modalArea2{
+  display: none;
+  position: fixed;
+  z-index: 10; /*サイトによってここの数値は調整 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modalBg, .modalBg2{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30,30,30,0.9);
+}
+
+.modalWrapper, .modalWrapper2{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  width: 70%;
+  max-width: 500px;
+  padding: 10px 30px;
+  background-color: #fff;
+}
+
+.closeModal{
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+
+/* --- OP animation --- */
+.shutter{
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin: auto;
+  background-color:#fff;
+  z-index:99;
+  -webkit-animation: byeShutter 2.4s forwards;
+  animation: byeShutter 2.4s forwards;
+}
+.logo {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-animation: logo 0.8s forwards;
+  animation: logo 0.8s forwards;
+  animation-delay: 0.2s;
+
+}
+@keyframes byeShutter {
+70% {
+  opacity: 1;
+}
+100% {
+  display: none;
+  opacity: 0;
+  z-index: -1;
+}
+}
+@keyframes logo {
+0% {
+  opacity: 1;
+}
+  
+50% {
+  transform: rotate(0deg);     
+}
+  100% {
+  transform: scale(0.8);
+  }
 }

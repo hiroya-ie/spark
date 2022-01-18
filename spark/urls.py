@@ -16,9 +16,10 @@ urlpatterns = [
     path('view4', view4.view4, name = 'view4'),
     path('view5', view5.view5, name = 'view5'),
     path('view1/ajax-number/', views.ajax_number, name='ajax_number'),
-    path('view2/ajax-number/', views.ajax_number, name='ajax_number'),
+    path('view2/ajax-wiki/', view2.ajax_wiki, name='ajax_wiki'),
     path('view3/ajax-number/', views.ajax_number, name='ajax_number'),
     path('view4/ajax-number/', views.ajax_number, name='ajax_number'),
     path('view5/ajax-number/', views.ajax_number, name='ajax_number'),
     path('ajax-number/', views.ajax_number, name='ajax_number'),
+    path('ajax-wiki/', view2.ajax_wiki, name='ajax_wiki'),
 ]
