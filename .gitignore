@@ -6,3 +6,4 @@
 /mysite/settings/local_settings.py
 wnjpn.db
 mysite.sock
+.env
