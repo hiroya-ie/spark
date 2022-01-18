@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spark</title>
     <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'spark/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'spark/style8.css' %}">
     <!--JavaScript-->
     <script src="https://kit.fontawesome.com/5d7787ac73.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,21 +21,19 @@
 
     <!-- header -->
     <header>
-      <h1><a href="#" class=title><i class="far fa-lightbulb">Spark</i></a></h1>
+      <h1><a href="#" class="title"><em class="far fa-lightbulb">Spark</em></a></h1>
       <form class="viewSelect" method="post">
         <div>
-          <select name="ViewSelect" onChange="location.href=value;">
-          <option value="#">ページを選択</option>
-          <option value=".">Home</option>
-          <option value="view1">View1</option>
-          <option value="view2">View2</option>
-          <option value="view3">View3</option>
-          <option value="view4">View4</option>
-          <option value="view5">View5</option>
+          <select name="ViewSelect" id="select-interval-second" >
+          <option value="3000">自動表示の間隔を選択</option>
+          <option value="1000">1秒</option>
+          <option value="3000">3秒</option>
+          <option value="5000">5秒</option>
+          <option value="10000">10秒</option>
           </select>
         </div>
       </form>
-      <button class="question" id="hint-openModal"><i class="far fa-question-circle"></i></button>
+      <button class="question" id="hint-openModal"><em class="far fa-question-circle"></em></button>
     </header>
 
     <!-- contents -->
@@ -45,7 +43,9 @@
       <div class="contents-item wordWrapper">
         <div class="words">
           <div class="wordLeft">
-            <button class="bt-left" id="wi1" onclick="search();">{{ word_ie1 }}</button>
+            <button class="bt-left" id="wi1" >{{ word_ie1 }}</button>
+            
+
           </div>
           <div class="cross">
             <p>×</p>
@@ -57,16 +57,23 @@
             <button class="btn bt-word" type="submit" id="wr3">{{ word_rand3 }}</button>
           </div>
         </div>
-        <div class="buttun">
-          <form id="ajax-wiki" action="{% url 'blog:ajax_wiki' %}" method="POST" class="bt">
+        <div class="button btn1">
+          <form id="ajax-wiki" class="bt">
               {% csrf_token %}
-              <button type="submit" class="btn bt-reload">もういっかい！</button>
+              <button type="button" class="btn bt-reload" onclick="ajaxWiki()" >もういっかい(R)</button>
           </form>
         </div>
-        <div class="buttun">
-          <button class="btn bt-reload" id="btn2" onclick="fixed_tango_L('wi1');" >左の単語を固定！</button>
+        <div class="button btn2">
+          <button class="btn bt-reload" id="btn2" onclick="fixed_tango_L('wi1');" >左の単語を固定(F)</button>
+        </div>
+        <div class="button btn3">
+          <button class="btn bt-reload" id="input-openModal" >左の単語を入力(I)</button>
+        </div>
+        <div class="button btn4">
+          <button class="btn bt-reload" id="auto-reload-button" onclick="autoReload();" >連続表示スタート(S)</button>
         </div>
       </div>
+
 
       <div class="contents-item keepWrapper">
         <div class="keepTitle">
@@ -76,6 +83,7 @@
         </div>
       </div>
     </div>
+
 
 
     <!-- wikiModal -->
@@ -94,22 +102,34 @@
 
     <!-- hintModal -->
     <section id="hint-modalArea" class="modalArea">
-      <div id="hint-modalBg" class="modalBg"></div>
-      <div class="modalWrapper">
+      <div id="hint-modalBg" class="modalBg" ></div>
+      <div class="modalWrapper" >
       <div class="modalContents">
-        <p>左の単語をクリックすると単語についての説明が出てくるよ!<br>右の単語をクリックすると単語の組み合わせが保存されるよ!<br>もういっかいボタンを押すと単語の組み合わせが変わるよ!</p>
-        </div>
+        <img class="hint_img" src="{% static 'spark/images/hint-1.svg'%}" alt>
+      </div>
         <div id="hint-closeModal" class="closeModal">
         ×
         </div>
       </div>
       </section>
 
+      <!-- inputModal -->
+    <section id="input-modalArea" class="modalArea">
+      <div id="input-modalBg" class="modalBg"></div>
+      <div class="modalWrapper">
+      <div class="modalContents">
+        <form action="#">
+          <input type="text" name="tango-left" id="input-leftword"/>
+          <input type="button" value="入力" id="input-complete" onclick="inputLeftWord();" >
+        </form>
+      </div>
+        <div id="input-closeModal" class="closeModal">
+        ×
+        </div>
+      </div>
+      </section>
 
-    <!--フォーム-->
-    <!-- <div class="form">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKsVhKNyarTrIrXJDwqlTF5dXa3HdOQ1ckzcK6v2sV96-TZg/viewform?embedded=true" width="640" height="645" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-    </div> -->
+      
   
 
 
@@ -134,49 +154,180 @@
         $('#hint-closeModal , #hint-modalBg').click(function(){
           $('#hint-modalArea').fadeOut();
         });
+        
       });
 
+
+
       //単語の組み合わせをKeepに保存
-      function butotnClick(){
-        var wi1 = $("#wi1").text(); 
-        var value1 = $('#wr1').text(); 
-        $('.save-tango').prepend('<p>' + wi1  +  " × "+ value1 + '</p>');
+      function wordSave(id){
+        const text = document.getElementById(id);
+        const wi1 = $("#wi1").text(); 
+        const value1 = text.innerHTML
+        $('.save-tango').prepend('<div class="saved-wordSet"> <span class="wordSet">' + wi1  +  " × "+ value1 + '</span> <button class="gc" id="goodCount" onclick="goodCount();" value>0</button> </div>');
       }
-      function butotnClick2(){       
-          var wi1 = $("#wi1").text(); 
-          var value2 = $("#wr2").text();
-          $('.save-tango').prepend('<p>' + wi1  + " × "+ value2 + '</p>');
-      }
-      function butotnClick3(){    
-          var wi1 = $("#wi1").text(); 
-          var value3 = $("#wr3").text();      
-          $('.save-tango').prepend('<p>' + wi1 + " × "+ value3 + '</p>');
-      }
-      let button1 = document.getElementById('wr1');
-      button1.addEventListener('click', butotnClick);
-      let button2 = document.getElementById('wr2');
-      button2.addEventListener('click', butotnClick2);
-      let button3 = document.getElementById('wr3');
-      button3.addEventListener('click', butotnClick3);
+      //Keepに保存
+      $(function () {
+        $('#wr1').click(function(){
+          wordSave('wr1');
+        });
+        $('#wr2').click(function(){
+          wordSave('wr2');
+        });
+        $('#wr3').click(function(){
+          wordSave('wr3');
+        });
+      });
+      
 
 
       
+      let inputing = "False";
+      let hint = "OFF";
+      let intervalSecond = 3000;
       //左の単語を固定
-      let left_tango = "not_fixed";
+      let leftWord = "not_fixed";
       function fixed_tango_L(idname){
-      obj = document.getElementById(idname);
-      if (left_tango=="not_fixed") {
-        obj.style.border='solid 1px';//ボタンが押しっぱであることを表現
-        left_tango = "fixed"; 
-        $('#btn2').text("左の固定を解除！")
-      }
-      else  {
-        left_tango = "not_fixed";
-        obj.style.border='none';//ボタン押しっぱ表現を元に戻す
-        $('#btn2').text("左の単語を固定！")
-      }
+        const obj = document.getElementById(idname);
+        if (leftWord=="not_fixed") {
+          obj.style.border='solid 1px';//ボタンが押しっぱであることを表現
+          leftWord = "fixed"; 
+          $('#btn2').text("左の固定を解除(F)")
+        }
+        else  {
+          leftWord = "not_fixed";
+          obj.style.border='none';//ボタン押しっぱ表現を元に戻す
+          $('#btn2').text("左の単語を固定(F)")
+        }
       }
 
+      //左の単語を入力するためのモーダルウィンドウ表示
+      $(function () {
+        $('#input-openModal').click(function(){
+          $('#input-modalArea').fadeIn();
+          document.getElementById("input-leftword").focus()
+          inputing = "True";
+        });
+        $('#input-closeModal , #input-modalBg, #input-complete').click(function(){
+          $('#input-modalArea').fadeOut();
+          inputing = "False";
+        });
+      });
+
+
+
+      //左の単語を入力
+      const inputLeftWord = () => {
+        const textbox = document.getElementById("input-leftword");
+        const inputValue = textbox.value;
+        const output = inputValue;
+        const line1 = '<a href="https://www.google.com/search?q=';
+        const line2 = '"target="_blank">「'
+        const line3 = '」をGoogleで検索</a>'
+        if (inputValue != "") {
+          document.getElementById("wi1").innerHTML = output;
+          line = line1+output+line2+output+line3
+          document.getElementById("wiki-modal").innerHTML = line;
+        }
+        $('#input-modalArea').fadeOut();
+        inputing = "False";
+      }
+      //Enterキーでリロードしてしまうのを防ぎ、Enter押されたら入力完了にする
+      document.getElementById("input-leftword").onkeypress = (e) => {
+        const key = e.keyCode || e.charCode || 0;
+        if (key == 13) {
+          e.preventDefault();
+          inputLeftWord();
+          
+        }
+      }
+
+      // setIntervalメソッドの戻り値をセットする変数
+      let intervalId;
+      let auto = "False";
+
+    
+
+      
+      function autoReload(){
+        // 0.5秒ごとに実行
+        if (auto == "False"){
+          auto = "True";
+          intervalId = setInterval(function() {
+            ajaxWiki()
+          }, intervalSecond);
+          $('#auto-reload-button').text("連続表示ストップ(S)")
+          console.log(auto);
+        }
+        else if (auto == "True"){
+          auto = "False";
+          clearInterval(intervalId);
+          $('#auto-reload-button').text("連続表示スタート(S)")
+          console.log(auto);
+        }
+      };
+      function goodCount(){
+        var elm = event.target;
+        var count = elm.innerHTML; 
+        count = Number(count)+1;
+        console.log(count);
+        elm.innerHTML=count;
+      };
+      function inputChange(event){
+        if (event.currentTarget.value>999 && event.currentTarget.value<10001){
+            intervalSecond = event.currentTarget.value;
+            console.log(intervalSecond);
+        }
+      }
+
+      let sis = document.getElementById('select-interval-second');
+      sis.addEventListener('change', inputChange);
+
+
+
+    
+  
+      
+      window.document.onkeyup = function (evt) {
+  
+        if (evt.key == "i" && hint == "OFF" ) {
+          inputing = "True";
+          $('#input-modalArea').fadeIn();
+          document.getElementById("input-leftword").focus()   
+        }
+        else if (evt.key == "h" && inputing == "False" && hint == "OFF") {
+          $('#hint-modalArea').fadeIn();
+          hint="ON"
+        }
+        else if (evt.key == "h" && inputing == "False" && hint == "ON") {
+          $('#hint-modalArea').fadeOut();
+          hint="OFF"
+        }
+        else if (evt.key == "f" && inputing == "False" && hint == "OFF" ) {
+          fixed_tango_L("wi1");
+        }
+        else if (evt.key == "r" && inputing == "False" && hint == "OFF") {
+          ajaxWiki();
+        }
+        else if (evt.key == "j" && inputing == "False" && hint == "OFF") {
+          wordSave('wr1');
+        }
+        else if (evt.key == "k" && inputing == "False" && hint == "OFF") {
+          wordSave('wr2');
+        }
+        else if (evt.key == "l" && inputing == "False" && hint == "OFF") {
+          wordSave('wr3');
+        }
+        else if (evt.key == "s" && inputing == "False" && hint == "OFF") {
+          autoReload();
+        }
+      }
+      
+
+
+      
+
+    
 
 
       
@@ -214,12 +365,9 @@
                 }
             }
         });
-        
 
-        //ajaxの各種設定（考える必要あり！）
-        $('#ajax-wiki').on('submit', function(e) {
-            e.preventDefault();//デフォ設定のリロードを回避
-
+        function ajaxWiki() { 
+            // e.preventDefault();//デフォ設定のリロードを回避
             $.ajax({
                 'url': '{% url "blog:ajax_wiki" %}',
                 'type': 'POST',
@@ -229,7 +377,7 @@
             })
             .done(function(response){
               //左の単語が固定されていない場合、全て更新
-              if (left_tango == "not_fixed") {
+              if (leftWord == "not_fixed") {
                 $('#wi1').text(response.word_ie1);
                 $('#wr1').text(response.word_rand1);
                 $('#wr2').text(response.word_rand2);
@@ -246,7 +394,11 @@
               }
                 
             });
-        });
+
+        }
+        
+
+      
 
 
     </script>
