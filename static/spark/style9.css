@@ -40,6 +40,9 @@ html {
   .wordWrapper {
     padding-bottom:50px;
   }
+  .header select {
+    width: 200px;
+  }
 }
 @media screen and (min-width: 1024px) {
   html {
@@ -196,8 +199,9 @@ header .question:active {
   text-align: left;
 }
 .saved-wordSet .gc{
-  width: 5%;
-  
+    width: 8%;
+    height: 1.5rem;
+    font-size: 1.1rem;
 }
 .saved-wordSet .fa-thumbs-o-up{
   margin-right: 3px;
