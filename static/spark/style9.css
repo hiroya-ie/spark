@@ -80,7 +80,7 @@ header select {
   font-size: 1rem;
   font-weight: 500;
   position:absolute;
-  /* width: 220px; */
+  width: 100px;
   height: 40px;
   text-align: center;
   top: 0;
@@ -196,7 +196,7 @@ header .question:active {
   text-align: left;
 }
 .saved-wordSet .gc{
-  
+  width: 5%;
   
 }
 .saved-wordSet .fa-thumbs-o-up{
