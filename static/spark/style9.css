@@ -363,7 +363,7 @@ header .question:active {
   left: 50%;
   transform:translate(-50%,-50%);
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
   padding: 10px 30px;
   background-color: #fff;
   border-radius: 10px;
