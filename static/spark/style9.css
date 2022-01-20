@@ -24,11 +24,24 @@ html {
 @media screen and (min-width: 100px) {
   html {
     font-size: 62.5%;
+    height: 100%;
+  }
+  .words {
+    height:300px;
+  }
+  .header select {
+    width: 100px;
   }
 }
 @media screen and (min-width: 768px) {
   html {
     font-size: 67.5%;
+  }
+  .wordWrapper {
+    padding-bottom:50px;
+  }
+  .header select {
+    width: 200px;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -70,7 +83,7 @@ header select {
   font-size: 1rem;
   font-weight: 500;
   position:absolute;
-  width: 220px;
+  width: 100px;
   height: 40px;
   text-align: center;
   top: 0;
@@ -115,7 +128,7 @@ header .question:active {
 .contents {
   display: block;
   text-align: center;
-  padding-top: 5%;
+  padding-top: 2.5%;
   
 }
 
@@ -129,6 +142,8 @@ header .question:active {
   margin-left: auto;
   margin-right: auto;
   width: 90%;
+  
+  /* background-color: rgba(255, 0, 0, 0.3); */
 }
 .words {
   margin-top: 8%;
@@ -138,12 +153,20 @@ header .question:active {
   align-items: center;
 }
 
+
+.buttonWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 90%; */
+  
+  
+}
+
 .keepWrapper {
   margin-left: auto;
   margin-right: auto;
   width: 70%;
-  
-  
+  /* background-color: rgba(0, 255, 0, 0.3); */
 }
  
 
@@ -159,6 +182,7 @@ header .question:active {
   margin-right: auto;
   margin-left: auto;
   text-align: left; */
+
 }
 .saved-wordSet {
   display: flex;
@@ -175,8 +199,9 @@ header .question:active {
   text-align: left;
 }
 .saved-wordSet .gc{
-  
-  
+    width: 8%;
+    height: 1.5rem;
+    font-size: 1.1rem;
 }
 .saved-wordSet .fa-thumbs-o-up{
   margin-right: 3px;
@@ -220,7 +245,7 @@ header .question:active {
   /* border-color: yellow; */
   float: left;
   width: 50%;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 
@@ -299,7 +324,7 @@ header .question:active {
   padding: 1rem 2rem;
   margin: 2rem;
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 0.1rem;
@@ -308,8 +333,10 @@ header .question:active {
   box-shadow: 0 4px 14px 0 rgba(var(--col-bl-rgb), 20%);
   transition: 0.1s ease;
   
-  margin-right: auto;
-  margin-left: auto;
+  /* margin-right: auto;
+  margin-left: auto; */
+
+  
 }
 
 /* ---  Mordal  --- */
@@ -352,8 +379,8 @@ header .question:active {
 
 /* --- Hint --- */
 .hint_img {
-  width: 110%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
 }
 
 
