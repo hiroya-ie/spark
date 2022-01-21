@@ -3,12 +3,15 @@ import random
 from pytrends.request import TrendReq
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import wikipedia
+import warnings
+import sqlite3
 
 
-ie_word_list=["人工知能", "web","スマホ","API","AR", "VR", "自然言語処理", "画像処理", "機械学習", 
+ie_word_list=["人工知能", "WEB","スマホ","API","拡張現実", "仮想現実", "自然言語処理", "画像処理", "機械学習", 
 "データベース", "GPS", "カメラ", "指紋認証", "顔認証", "サーモグラフィ", "リモート", "ロボット", "3D",
- "音声", "SNS", "メール", "自動化", "オンライン", "電子化","分析","python","C言語","java","javascript",
-  "HTML","css","C++","go","Django\n(python)", "tkinter\n(python)", "Xcode", "processing\n(Java)",]
+ "音声", "SNS", "メール", "自動化", "オンライン", "電子化","分析","Python","C言語","Java","JavaScript",
+  "HTML","CSS","C++","Go言語","Django", "Tkinter", "Xcode", "Processing",]
   
 ie_original_word=["北食","でんちう","琉大map","宜野湾農工大", "ファイヤー和田", "TODOリスト","webmail",
 "教務情報",
@@ -60,13 +63,49 @@ ie_original_word=["北食","でんちう","琉大map","宜野湾農工大", "フ
 pytrend = TrendReq(hl='ja-jp',tz=540)
 trend_wl = pytrend.trending_searches(pn='japan')[0].to_list()
 
+# 言語を日本語に設定
+wikipedia.set_lang("jp")
+
 def randomA():
     result = []
-    rensou_wl = wlist
     result.extend(trend_wl)
-    # result.extend(rensou_wl)
+    ie_list=random.sample(ie_word_list, 9)
     result.extend(ie_original_word)
-    return random.sample(ie_word_list, 9), random.sample(result, 9)
+    return ie_list, random.sample(result, 9)
+
+
+#wikiあり
+def randomB():
+    result = []
+    result.extend(trend_wl)
+    ie_list=random.sample(ie_word_list, 9)
+    result.extend(ie_original_word)
+
+    word=ie_list[0]
+    wiki= wikip(word=word)
+
+    return ie_list, random.sample(result, 9), wiki
+
+
+
+#wikiあり(DB)
+def randomC():
+    result = []
+    result.extend(trend_wl)
+    ie_list=random.sample(ie_word_list, 9)
+    result.extend(ie_original_word)
+
+    #DBからwiki取得
+    conn = sqlite3.connect('./wiki.db')
+    c = conn.cursor()
+    word = ie_list[0]
+    wiki=c.execute("SELECT wiki_description FROM articles where word = '%s';" %(word)).fetchone()[0]
+    conn.commit()
+    conn.close()
+    if wiki=="自分で調べてください!" :
+      wiki="クリックしてください！"
+    return ie_list, random.sample(result, 9), wiki
+
 
 
 #連想語サイトからスクレイピングしてリスト作成
@@ -84,3 +123,13 @@ del rensou_words_list[-55:]
 wlist.extend(rensou_words_list)
 
     #return wlist
+
+    
+def wikip(word):
+  warnings.catch_warnings()
+  warnings.simplefilter("ignore")
+  try:
+    line=wikipedia.summary(word)
+  except wikipedia.exceptions.DisambiguationError as e:
+    line= "自分で調べてください"
+  return line
