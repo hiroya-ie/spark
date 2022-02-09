@@ -1,5 +1,7 @@
 from django.urls import path
 
+from spark.spark import kokusai
+
 from . import views
 from . import view1
 from . import view2
@@ -32,4 +34,6 @@ urlpatterns = [
     path('view7', view7.view7, name = 'view7'),
     path('ajax-wiki/', view7.ajax_wiki, name='ajax_wiki'),
     path('view8', view7.view8, name = 'view8'),
+    path('kokusai', kokusai.ajax_kokusai, name = 'ajax_kokusai'),
+    path('kokusai', kokusai.kokusai, name = 'kokusai'),
 ]

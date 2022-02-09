@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spark</title>
+    <title>国際協力Spark</title>
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'spark/style9.css' %}">
     <!--JavaScript-->
@@ -374,7 +374,7 @@
         function ajaxWiki() { 
             // e.preventDefault();//デフォ設定のリロードを回避
             $.ajax({
-                'url': '{% url "blog:ajax_wiki" %}',
+                'url': '{% url "blog:ajax_kokusai" %}',
                 'type': 'POST',
                 'data': {
                 },
