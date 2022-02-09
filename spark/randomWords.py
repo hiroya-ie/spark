@@ -27,6 +27,17 @@ ie_original_word=["北食","でんちう","琉大map","宜野湾農工大", "フ
 "単位", "モブプロ", "ペアプロ", "自販機", "自動車学校", "休憩場所", "zoom", "mattermost" ,"discord","cotediter",
 "翻訳", "ニュース", "スポーツ", "ショッピング", "マッチング", "音楽", "写真", "ホテル", "ヘルスケア",]
 
+kokusai_word=["廃棄場", "貧困", "低賃金", "焼却炉", "沖縄2世", "文書", "水質汚染", "アフガニスタン", "キルギス", "医師",
+"水富養化","コロナ","CO2","エネルギー","人間経済活動活動","ODA","人口増加","食糧不足","砂漠化","熱帯雨林",
+"紫外線","温暖化","酸性雨","有害廃棄物","海洋汚染","サンゴ礁","ゴミ不法投棄","野生動物","電気","お風呂","輸送","エアコン","冷蔵庫",
+"洗濯機","テレビ","パソコン","スマホ","産業革命","化石燃料","LCA","カレーライス","ガソリン価格","JICA","藁の家","レンガの家","三匹の子豚",
+"教育問題","男女間格差","環境破壊","ボランティアツアー","フェアトレード","保険医療サービス","安全な飲み水","紛争","汚職","法整備","インフラ","高齢化","貧富の差",
+"地域社会","世界の沖縄人","情報技術の遅れ","雇用","農業従事者","病気","差別","大気汚染",
+
+]
+
+
+
   #'アイデンティティ管理', 'アクセス解析', 'アドイン', 'アドオン', 'アンケートシステム', '安否確認システム',
 # '暗号化', 'インシデント', 'インジェクション攻撃', 'インフラ', 'インベントリ', 'イーサネット', 'ウィルス対策',
 # 'ウォームスタンバイ', '受付システム', 'エクサバイト', 'エンタープライズサーチ', 'オブジェクト指向', 'オンデマンド',
@@ -94,6 +105,25 @@ def randomC():
     result.extend(trend_wl)
     ie_list=random.sample(ie_word_list, 9)
     result.extend(ie_original_word)
+
+    #DBからwiki取得
+    conn = sqlite3.connect('./wiki.db')
+    c = conn.cursor()
+    word = ie_list[0]
+    wiki=c.execute("SELECT wiki_description FROM articles where word = '%s';" %(word)).fetchone()[0]
+    conn.commit()
+    conn.close()
+    if wiki=="自分で調べてください!" :
+      wiki="クリックしてください！"
+    return ie_list, random.sample(result, 9), wiki
+
+
+#wikiあり(DB)
+def randomD():
+    result = []
+    result.extend(trend_wl)
+    ie_list=random.sample(ie_word_list, 9)
+    result.extend(kokusai_word)
 
     #DBからwiki取得
     conn = sqlite3.connect('./wiki.db')
