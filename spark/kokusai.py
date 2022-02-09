@@ -5,7 +5,7 @@ from django.http import JsonResponse
 
 
 def kokusai(request):
-    ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomC()
+    ie_wordlist, trend_rensou_wordlist, wiki = randomWords.randomD()
 
     content = {
         'word_ie1': ie_wordlist[0],
